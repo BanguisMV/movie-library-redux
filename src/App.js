@@ -46,10 +46,6 @@ const { page } = useSelector(state => state.page)
       <br />
       <br />
 
-{Categories.map( x =>  <button key ={}>
-      Add page
-    </button>
-)}
 
     <button onClick={() => dispatch({type: 'PAGE_UP'})}>
       Add page
