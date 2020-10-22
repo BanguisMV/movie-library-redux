@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
       flexDirection:'column',
       justifyContent:'center',
       alignItems:'center',
-      height:'15rem',
+      height:'100%',
       textAlign:'center',
       color: theme.palette.text.secondary,
     },
