@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
       flexDirection:'column',
       justifyContent:'center',
       alignItems:'center',
-   
+      height:'15rem',
       textAlign:'center',
       color: theme.palette.text.secondary,
     },
@@ -33,7 +33,7 @@ const Movies = () => {
         <div className={classes.root}>
             <Grid container spacing={4}>
           {movies.movies.map(movie => (
-                    <Grid item xs={6} sm={4} md={3} key={movie.id}>
+                    <Grid item xs={12} sm={4} md={3} key={movie.id}>
                         <Paper className={classes.paper}>
                         <img 
                         src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
