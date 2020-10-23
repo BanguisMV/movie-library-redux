@@ -99,7 +99,7 @@ const NavBar = (props) => {
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = useState(false);
-    const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
+    const handleDrawerToggle = () => setMobileOpen(prevState => !prevState);
 
   const loopCategory = (array) => {
       return array.map(arr => (
@@ -166,6 +166,7 @@ const NavBar = (props) => {
           <SwipeableDrawer
             container={container}
             variant="temporary"
+            onOpen={handleDrawerToggle}
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}
             onClose={handleDrawerToggle}
