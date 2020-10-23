@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
       flexDirection:'column',
       justifyContent:'center',
       alignItems:'center',
-      height:'auto',
-      textAlign:'center',
+      height:'100%',
+            textAlign:'center',
       color: theme.palette.text.secondary,
     },
     rating: {
@@ -32,9 +32,15 @@ const Movies = () => {
     return (
         <div className={classes.root}>
             <Grid container spacing={4}>
+<<<<<<< HEAD
               {movies.movies.map(movie => (
                 <Grid item xs={12} sm={4} md={3} key={movie.id}>
                     <Paper className={classes.paper}>
+=======
+          {movies.movies.map(movie => (
+                    <Grid item xs={12} sm={4} md={3} key={movie.id}>
+                        <Paper className={classes.paper}>
+>>>>>>> ec9e1db777d2d1741e98c579c4391ef1b1d0f0b8
                         <img 
                           src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
                             alt="" style={{width:'100%', height:'100%'}} />
