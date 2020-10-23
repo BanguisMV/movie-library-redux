@@ -23,7 +23,7 @@ const ResponsiveDrawer = (props) => {
   const classes = rootStyle();
 
   useEffect(() => {
-    dispatch(getMoviesByDiscover('popular', 1))
+    dispatch(getMoviesByDiscover('upcoming', 1))
 },[dispatch])
   return (
     <div className={classes.root}>
