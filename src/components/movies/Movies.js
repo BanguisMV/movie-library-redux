@@ -29,24 +29,12 @@ const Movies = () => {
                                     <Typography gutterBottom variant="h6" component="h2">
                                     {movie.original_title}
                                     </Typography>
-                                    <Rating name="read-only" value={(movie.vote_average / 2)} readOnly className={styles.rating} />
+                                    <Rating name="half-rating-read" value={(movie.vote_average / 2)} precision={0.5} readOnly className={styles.rating} />
                                   </CardContent>
                                 </CardActionArea>
                           </Card>
                         </Grid>
-
                     ))}
-              {/* {movies.movies.map(movie => (
-                <Grid item xs={12} sm={4} md={3} key={movie.id}>
-                    <Paper className={classes.paper}>
-                        <img 
-                          src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
-                            alt="" style={{width:'100%', height:'100%'}} />
-                          <p>{movie.original_title}</p>
-                        <Rating name="read-only" value={5} readOnly className={classes.rating} />
-                    </Paper>
-                </Grid>
-              ))} */}
             </Grid>
       </div>
     )
