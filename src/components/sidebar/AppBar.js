@@ -176,7 +176,12 @@ const NavBar = (props) => {
           </SwipeableDrawer>
         </Hidden>
         <Hidden smDown implementation="css">
-          <SwipeableDrawer classes={{ paper: classes.drawerPaper, }} variant="permanent" open >
+          <SwipeableDrawer 
+          onClose={handleDrawerToggle}
+          onOpen={handleDrawerToggle}
+          classes={{ paper: classes.drawerPaper, }} 
+          variant="permanent" 
+          open >
             {drawer}
           </SwipeableDrawer>
         </Hidden>
