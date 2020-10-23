@@ -15,7 +15,10 @@ import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
+import { SwipeableDrawer } from '@material-ui/core';
+
 const drawerWidth = 210;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -92,7 +95,6 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = (props) => {
     const location = useLocation()
-
     const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
@@ -102,11 +104,11 @@ const NavBar = (props) => {
   const loopCategory = (array) => {
       return array.map(arr => (
         <ListItem button key={arr.id} 
-        component = {NavLink} 
-        selected = {location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
-        autoFocus = {location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
-        to={`/${arr.name.toLowerCase()}`}>
-        <ListItemText primary={arr.name} value={arr.id} />
+          component = {NavLink} 
+          selected = {location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
+          autoFocus = {location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
+          to={`/${arr.name.toLowerCase()}`}>
+          <ListItemText primary={arr.name} value={arr.id} />
        </ListItem>
     ))
   }
@@ -161,7 +163,7 @@ const NavBar = (props) => {
 
       <nav className={classes.drawer} aria-label="mailbox folders">
         <Hidden smUp implementation="css">
-          <Drawer
+          <SwipeableDrawer
             container={container}
             variant="temporary"
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -171,12 +173,12 @@ const NavBar = (props) => {
             ModalProps={{ keepMounted: true}}
           >
             {drawer}
-          </Drawer>
+          </SwipeableDrawer>
         </Hidden>
         <Hidden smDown implementation="css">
-          <Drawer classes={{ paper: classes.drawerPaper, }} variant="permanent" open >
+          <SwipeableDrawer classes={{ paper: classes.drawerPaper, }} variant="permanent" open >
             {drawer}
-          </Drawer>
+          </SwipeableDrawer>
         </Hidden>
       </nav>
       </Fragment>
