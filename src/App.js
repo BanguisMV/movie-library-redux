@@ -1,61 +1,35 @@
-import React, { useEffect } from 'react';
-import logo from './logo.svg';
-import  { useDispatch, useSelector } from 'react-redux'
-import {getMoviesByDiscover } from './redux/actions/getManyMovies'
-import './App.css';
-
-function App() {
-const movies = useSelector(state => state.movies)
-const { page } = useSelector(state => state.page)
+import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles} from '@material-ui/core/styles';
+import SideNav from './components/sidebar/AppBar';
 
 
-  const dispatch = useDispatch()
-  console.log(movies);
 
-  const Categories = [
-    {id: 28, name: "Action"},
-    {id: 12, name: "Adventure"},
-    {id: 16, name: "Animation"},
-    {id: 35, name: "Comedy"},
-    {id: 80, name: "Crime"},
-    {id: 99, name: "Documentary"},
-    {id: 18, name: "Drama"},
-    {id: 10751, name: "Family"},
-    {id: 14, name: "Fantasy"},
-    {id: 36, name: "History"},
-    {id: 27, name: "Horror"},
-    {id: 10402, name: "Music"},
-    {id: 9648, name: "Mystery"},
-    {id: 10749, name: "Romance"},
-    {id: 878, name: "Science Fiction"},
-    {id: 10770, name: "TV Movie"},
-    {id: 53, name: "Thriller"},
-    {id: 10752, name: "War"},
-    {id: 37, name: "Western"},
-  ];
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+}));
 
-  
-  useEffect(() => {
-    dispatch(getMoviesByDiscover('popular', page))
-  },[dispatch, page])
-
+function ResponsiveDrawer(props) {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <br />
-      <br />
-      <br />
-      <br />
-
-
-    <button onClick={() => dispatch({type: 'PAGE_UP'})}>
-      Add page
-    </button>
-
-    <button onClick={() => dispatch({type: 'PAGE_DOWN'})}>
-      back page
-    </button>
+    <div className={classes.root}>
+      <CssBaseline />
+      <SideNav />
+      <main className={classes.content}>
+       
+      
+      </main>
     </div>
   );
 }
 
-export default App;
+
+export default ResponsiveDrawer;

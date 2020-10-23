@@ -8,8 +8,6 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store';
 import App from './App';
 
-import 'semantic-ui-css/semantic.min.css'
-
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

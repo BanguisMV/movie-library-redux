@@ -4,6 +4,7 @@ const INITIAL_STATE = {
     movies: [],
     loading: false,
     error: '',
+    genre:'',
  };
 
 
@@ -20,8 +21,7 @@ const INITIAL_STATE = {
                  movies: action.payload.movies,
                  loading: action.payload.loading,
             };
-       
-            case MOVIES_FAILED :
+          case MOVIES_FAILED :
                return {
                  ...state, 
                     error: action.payload.error,
