@@ -1,0 +1,17 @@
+.root {
+    flex-grow: 1;
+    text-align: center;
+    padding: 1rem;
+}
+.rating {
+    margin-bottom: 5px;
+    position: sticky;
+}
+.card {
+    height: auto;
+}
+@media(max-width:400px) {
+    .root {
+        padding: 0;
+    }
+}
