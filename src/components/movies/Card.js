@@ -25,7 +25,7 @@ const Cards = ({ data, setImageLoaded, didImageLoaded }) => {
     return (
         <Fragment>
             {data.map(movie => (    
-                    <Grid item  sm={6} md={4} lg={3} key={movie.id} className={styles.grid}>
+                    <Grid item  xs={12} sm={6} md={4} lg={3} key={movie.id} className={styles.grid}>
                             <Card className={styles.card}>
                                 <LazyLoad height={400} offset={100}>
                                         <CardMedia
