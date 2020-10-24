@@ -120,15 +120,15 @@ const NavBar = (props) => {
       <div>
         {/* <img src="https://movie.banguismv.wtf/static/media/Poster.66bbb98a.png" alt="" style={{width:'100%'}} /> */}
         <Divider />
-        <Typography className={classes.genre} variant="h4" noWrap>
+        <Typography className={classes.genre} variant="h5" noWrap>
            Discover
           </Typography>
         <List>
             {loopCategory(Discover,'discover')}        
         </List>
         <Divider />
-        <Typography className={classes.genre} variant="h4" noWrap>
-           Genre
+          <Typography className={classes.genre} variant="h5" noWrap>
+            Genre
           </Typography>
         <List>
           {loopCategory(Categories,'genre')}        

@@ -1,43 +1,36 @@
 import React,{ useEffect } from 'react'
-import Grid from '@material-ui/core/Grid';
-import Rating from '@material-ui/lab/Rating';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+import Helmet from 'react-helmet';
 import { withRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { getMoviesByDiscover } from '../../redux/actions/getManyMovies';
+import { getMoviesByGenre } from '../../redux/actions/getManyMovies';
+import Grid from '@material-ui/core/Grid';
+import Cards from './Card';
 import styles from './movies.module.css';
+import { Categories } from '../sidebar/Categories';
 
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt){
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+}
 const Genre = (props) => {
-   
-    const movies = useSelector(state => state.movies)
+    const dispatch = useDispatch()
+    const { id } = Categories.find(category => props.match.params.id === category.name.toLowerCase())
+    const { page }= useSelector(state => state.page)
+    const { movies,loading } = useSelector(state => state.movies)
+    useEffect(() => {
+        props.history.push(`${window.location.pathname}?page=${page}`)
+        dispatch(getMoviesByGenre(id,'popularity',page))
+    },[page,dispatch,props.history,id ])
+
     return (
         <div className={styles.root}>
-            <Grid container spacing={4}>
-                {movies.movies.map(movie => (    
-                    <Grid item  sm={6} md={4} lg={3} key={movie.id} >
-                        <Card  className={styles.card} >
-                            <CardActionArea>
-                                <CardMedia
-                                    component="img"
-                                    alt={movie.original_title}
-                                    height="90%"
-                                    image={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
-                                    title={movie.original_title}
-                                    />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h6" component="h6"> {movie.original_title} </Typography>
-                                        <Rating name="half-rating-read" value={(movie.vote_average / 2)} precision={0.5} 
-                                        readOnly className={styles.rating} />
-                                    </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </Grid>
-                ))}
+              <Helmet>
+                <title>{toTitleCase(props.match.params.id)}</title>
+            </Helmet>
+            <Grid container spacing={6}>
+                {loading ? <h1>Loading</h1> : <Cards data={movies} />}
             </Grid>
         </div>
     )
