@@ -1,7 +1,7 @@
 export const Discover = [
-    {id: 'popular', name: "Popular"},
-    {id: 'top_rated', name: "Top Rated"},
-    {id: 'upcoming', name: "Upcoming"},
+    { id: 'popular', name: "Popular" },
+    { id: 'top_rated', name: "Top Rated" },
+    { id: 'upcoming', name: "Upcoming" },
   ]
 
  export const Categories = [

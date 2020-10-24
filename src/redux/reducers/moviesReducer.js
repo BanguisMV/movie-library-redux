@@ -4,7 +4,6 @@ const INITIAL_STATE = {
     movies: [],
     loading: false,
     error: '',
-    genre:'',
  };
 
 

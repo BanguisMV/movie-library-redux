@@ -1,4 +1,4 @@
-import { PAGE_DOWN, PAGE_UP } from '../actions/types';
+import { PAGE_DOWN, PAGE_UP, PAGE_RESET } from '../actions/types';
 
 const INITIAL_STATE = {
     page:1
@@ -17,7 +17,11 @@ const INITIAL_STATE = {
                 ...state, 
                 page: state.page - 1,
             };
-           
+            case PAGE_RESET:
+                return {
+                  ...state, 
+                     page: 1 ,
+                };
          default: return state;
     }
 

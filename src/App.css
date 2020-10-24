@@ -1,4 +1,14 @@
-.App {
-  display: flex;
-  height: 100vh;
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #804ddf #ffffff;
+}
+
+*::-webkit-scrollbar {
+  width: .5rem;
+}
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #804ddf;
 }

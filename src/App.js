@@ -2,9 +2,12 @@ import React, { useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import SideNav from './components/sidebar/AppBar';
-import { useDispatch } from 'react-redux';
-import { getMoviesByDiscover } from './redux/actions/getManyMovies';
 import Movies from './components/movies/Movies';
+import { Route, Switch, Redirect} from 'react-router-dom';
+import { getMoviesByDiscover } from './redux/actions/getManyMovies';
+import Movie from './components/movie/Movie';
+import Genre from './components/movies/Genre';
+import Discover from './components/movies/Discover';
 
 const rootStyle = makeStyles((theme) => ({
   root: {
@@ -18,13 +21,9 @@ const rootStyle = makeStyles((theme) => ({
 }));
 
 const ResponsiveDrawer = (props) => {
-  const dispatch = useDispatch()
 
   const classes = rootStyle();
 
-  useEffect(() => {
-    dispatch(getMoviesByDiscover('upcoming', 1))
-},[dispatch])
   return (
     <div className={classes.root}>
       
@@ -32,7 +31,13 @@ const ResponsiveDrawer = (props) => {
       <SideNav />
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Movies />
+        <Switch>
+          
+          <Route exact path="/" render={() => <Redirect to="/discover/popular" />} />
+          <Route exact path='/discover/:by' component={Discover} />
+          <Route exact path='/genre/:id' component={Genre} />
+          <Route exact path={`/movie/:id`} component={Movie} />
+        </Switch>
       </main>
     </div>
   );

@@ -9,6 +9,11 @@
 }
 .card {
     height: auto;
+    transition: all .3s ease-in-out !important;
+}
+.card:hover {
+    transform: scale(1.01);
+    box-shadow: 0px 10px 17px -8px rgba(0,0,0,0.75);
 }
 @media(max-width:400px) {
     .root {

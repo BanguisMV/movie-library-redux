@@ -15,7 +15,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
 import { SwipeableDrawer } from '@material-ui/core';
-
+import { useDispatch } from 'react-redux';
 const drawerWidth = 210;
 
 const useStyles = makeStyles((theme) => ({
@@ -89,10 +89,15 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
-
+  genre:{
+    margin:'1rem 0 0 .8rem',
+    color:'#804ddf',
+    fontSize:'1rem'
+  }
 }));
 
 const NavBar = (props) => {
+    const dispatch = useDispatch()
     const location = useLocation()
     const { window } = props;
     const classes = useStyles();
@@ -100,27 +105,33 @@ const NavBar = (props) => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const handleDrawerToggle = () => setMobileOpen(prevState => !prevState);
 
-  const loopCategory = (array) => {
+  const loopCategory = (array, path) => {
       return array.map(arr => (
         <ListItem button key={arr.id} 
-          component = {NavLink} 
-          selected = {location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
-          autoFocus = {location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
-          to={`/${arr.name.toLowerCase()}`}>
+          component = { NavLink }
+          selected = { location.pathname.toLowerCase() === `/${path}/${arr.name.toLowerCase()}` ? true : false } 
+          autoFocus = { location.pathname.toLowerCase() === `/${path}/${arr.name.toLowerCase()}` ? true : false } 
+          to={`/${path}/${arr.name.toLowerCase()}`}>
           <ListItemText primary={arr.name} value={arr.id} />
        </ListItem>
     ))
   }
     const drawer = (
       <div>
-        <img src="https://movie.banguismv.wtf/static/media/Poster.66bbb98a.png" alt="" style={{width:'100%'}} />
+        {/* <img src="https://movie.banguismv.wtf/static/media/Poster.66bbb98a.png" alt="" style={{width:'100%'}} /> */}
         <Divider />
+        <Typography className={classes.genre} variant="h4" noWrap>
+           Discover
+          </Typography>
         <List>
-            {loopCategory(Discover)}        
+            {loopCategory(Discover,'discover')}        
         </List>
         <Divider />
+        <Typography className={classes.genre} variant="h4" noWrap>
+           Genre
+          </Typography>
         <List>
-          {loopCategory(Categories)}        
+          {loopCategory(Categories,'genre')}        
         </List>
       </div>
     );
@@ -129,7 +140,7 @@ const NavBar = (props) => {
   
     return (
         <Fragment> 
-        <AppBar position="fixed" className={classes.appBar} color='primary'>
+        <AppBar position="fixed" className={`${classes.appBar} sidebar-scrollbar`} color='secondary'>
             <Toolbar>
           <IconButton
             color="inherit"

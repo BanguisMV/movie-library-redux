@@ -41,7 +41,7 @@ export const getMoviesByDiscover = (discover, page) => {
     }
 }
  
-export const getMoviesByGenre = (sort,page,genre) => {
+export const getMoviesByGenre = (genre,sort,page) => {
    return dispatch => {
     dispatch(LOADING())
        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genre}&sort_by=${sort}.desc&page=${page}`)

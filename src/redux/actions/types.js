@@ -11,3 +11,7 @@ export const MOVIES_FAILED = 'MOVIES_FAILED';
 
 export const PAGE_UP = 'PAGE_UP';
 export const PAGE_DOWN = 'PAGE_DOWN';
+export const PAGE_RESET = 'PAGE_RESET';
+
+export const SET_GENRE = 'SET_GENRE';
+export const SET_DISCOVER = 'SET_DISCOVER';
