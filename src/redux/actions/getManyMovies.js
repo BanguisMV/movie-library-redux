@@ -2,11 +2,12 @@ import { MOVIES_FETCHING, MOVIES_SUCCESS, MOVIES_FAILED } from '../actions/types
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-const LOADING = () => {
+const LOADING = (newController) => {
    return {
        type: MOVIES_FETCHING,
        payload: {
-           loading: true
+           loading: true,
+           controller: newController
        }
    }
 }
@@ -32,19 +33,31 @@ const FAILED = (error) => {
 }
 
 export const getMoviesByDiscover = (discover, page) => {
-    return dispatch => {
-     dispatch(LOADING())
-        fetch(`https://api.themoviedb.org/3/movie/${discover}?api_key=${API_KEY}&page=${page}`)
+    return (dispatch, getState) => {
+        const { controller } = getState().movies;
+        controller.abort();
+        const newController = new AbortController();
+        const signal = newController.signal;
+  
+
+     dispatch(LOADING(newController))
+        fetch(`https://api.themoviedb.org/3/movie/${discover}?api_key=${API_KEY}&page=${page}`, {signal})
         .then(res => res.json())
         .then(res => dispatch(SUCCESS(res.results)))
-        .catch(err =>  dispatch(FAILED(err)))
+        .catch(err =>  dispatch(FAILED(err.toString())))
     }
 }
  
 export const getMoviesByGenre = (genre,sort,page) => {
-   return dispatch => {
-    dispatch(LOADING())
-       fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genre}&sort_by=${sort}.desc&page=${page}`)
+   return (dispatch, getState)  => {
+    const { controller } = getState().movies;
+    controller.abort();
+    const newController = new AbortController();
+    const signal = newController.signal;
+
+
+    dispatch(LOADING(newController))
+       fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genre}&sort_by=${sort}.desc&page=${page}`, {signal})
        .then(res => res.json())
        .then(res => dispatch(SUCCESS(res.results)))
        .catch(err =>  dispatch(FAILED(err)))

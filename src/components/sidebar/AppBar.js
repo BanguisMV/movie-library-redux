@@ -1,6 +1,6 @@
 import React, { useState, Fragment} from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Categories, Discover } from './Categories';
+import { Categories, Discovers } from './Categories';
 import AppBar from '@material-ui/core/AppBar';
 import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
@@ -10,12 +10,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
-import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
+import {  makeStyles, useTheme } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
 import { SwipeableDrawer } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+
 const drawerWidth = 210;
 
 const useStyles = makeStyles((theme) => ({
@@ -23,12 +23,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   drawer: {
+  
     [theme.breakpoints.up('md')]: {
       width: drawerWidth,
       flexShrink: 0,
     },
   },
   appBar: {
+    backgroundColor: ' #804ddf',
     [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
@@ -43,10 +45,12 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: '#703ad3',
+    transition:'all .4s ease-in-out',
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: '#8e5af0',
     },
+
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('md')]: {
@@ -97,7 +101,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavBar = (props) => {
-    const dispatch = useDispatch()
     const location = useLocation()
     const { window } = props;
     const classes = useStyles();
@@ -109,29 +112,31 @@ const NavBar = (props) => {
       return array.map(arr => (
         <ListItem button key={arr.id} 
           component = { NavLink }
-          selected = { location.pathname.toLowerCase() === `/${path}/${arr.name.toLowerCase()}` ? true : false } 
-          autoFocus = { location.pathname.toLowerCase() === `/${path}/${arr.name.toLowerCase()}` ? true : false } 
-          to={`/${path}/${arr.name.toLowerCase()}`}>
+          
+          selected = { location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
+          autoFocus = { location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
+          to={`/${arr.name.toLowerCase()}`}>
           <ListItemText primary={arr.name} value={arr.id} />
        </ListItem>
     ))
   }
     const drawer = (
       <div>
-        {/* <img src="https://movie.banguismv.wtf/static/media/Poster.66bbb98a.png" alt="" style={{width:'100%'}} /> */}
+        <img src="https://movie.banguismv.wtf/static/media/Poster.66bbb98a.png" alt="" style={{width:'100%'}} />
         <Divider />
         <Typography className={classes.genre} variant="h5" noWrap>
            Discover
           </Typography>
         <List>
-            {loopCategory(Discover,'discover')}        
+    
+            {loopCategory(Discovers)}        
         </List>
         <Divider />
           <Typography className={classes.genre} variant="h5" noWrap>
             Genre
           </Typography>
         <List>
-          {loopCategory(Categories,'genre')}        
+          {loopCategory(Categories)}        
         </List>
       </div>
     );
@@ -168,34 +173,33 @@ const NavBar = (props) => {
             />
           </div>
         </Toolbar>
-        
         </AppBar>
 
       <nav className={classes.drawer} aria-label="mailbox folders">
-        <Hidden smUp implementation="css">
-          <SwipeableDrawer
-            container={container}
-            variant="temporary"
-            onOpen={handleDrawerToggle}
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{ paper: classes.drawerPaper}}
-            ModalProps={{ keepMounted: true}}
-          >
-            {drawer}
-          </SwipeableDrawer>
-        </Hidden>
-        <Hidden smDown implementation="css">
-          <SwipeableDrawer 
-          onClose={handleDrawerToggle}
-          onOpen={handleDrawerToggle}
-          classes={{ paper: classes.drawerPaper, }} 
-          variant="permanent" 
-          open >
-            {drawer}
-          </SwipeableDrawer>
-        </Hidden>
+          <Hidden smUp implementation="css">
+            <SwipeableDrawer
+              container={container}
+              variant="temporary"
+              onOpen={handleDrawerToggle}
+              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              classes={{ paper: classes.drawerPaper}}
+              ModalProps={{ keepMounted: true}}
+            >
+              {drawer}
+            </SwipeableDrawer>
+          </Hidden>
+          <Hidden smDown implementation="css">
+              <SwipeableDrawer 
+              onClose={handleDrawerToggle}
+              onOpen={handleDrawerToggle}
+              classes={{ paper: classes.drawerPaper, }} 
+              variant="permanent" 
+              open >
+                {drawer}
+              </SwipeableDrawer>
+          </Hidden>
       </nav>
       </Fragment>
     )

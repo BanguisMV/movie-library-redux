@@ -2,10 +2,11 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import SideNav from './components/sidebar/AppBar';
-import { Route, Switch, Redirect} from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Movie from './components/movie/Movie';
 import Genre from './components/movies/Genre';
 import Discover from './components/movies/Discover';
+import { Discovers, Categories } from './components/sidebar/Categories';
 
 const rootStyle = makeStyles((theme) => ({
   root: {
@@ -28,14 +29,11 @@ const classes = rootStyle();
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Switch>
-            <Route exact path="/genre" render={() => <Redirect to="/genre/action" />} />
-            <Route exact path="/" render={() => <Redirect to="/discover/popular" />} />
-            <Route exact path="/discover" render={() => <Redirect to="/discover/popular" />}/>
-            <Route exact path='/discover/:by' component={Discover} />
-            <Route exact path='/genre/:id' component={Genre} />
+            <Route exact path="/" render={() => <Redirect to="/popular" />} />
+            {Discovers.map(discover => (<Route exact path={`/${discover.name.toLowerCase()}`} key={discover.id} component={Discover} />))}
+            {Categories.map(category => (<Route exact path={`/${category.name.toLowerCase()}`} key={category.id} component={Genre} />))}
             <Route exact path='/movie/:id' component={Movie} />
             <Route path='*' render={() => <h1>Error</h1>} />
-
           </Switch>
         </main>
     </div>

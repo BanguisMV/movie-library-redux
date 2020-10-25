@@ -1,4 +1,4 @@
-import React,{ useEffect } from 'react'
+import React,{ useEffect, useState } from 'react'
 import Helmet from 'react-helmet';
 import { withRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -6,6 +6,8 @@ import { useDispatch } from 'react-redux';
 import { getMoviesByGenre } from '../../redux/actions/getManyMovies';
 import Grid from '@material-ui/core/Grid';
 import Cards from './Card';
+import FingerLoader from './HandLoader';
+
 import styles from './movies.module.css';
 import { Categories } from '../sidebar/Categories';
 
@@ -15,8 +17,10 @@ function toTitleCase(str) {
     });
 }
 const Genre = (props) => {
+    const [imageLoaded, setImageLoaded] = useState(false)
+
     const dispatch = useDispatch()
-    const { id } = Categories.find(category => props.match.params.id === category.name.toLowerCase())
+    const { id, name } = Categories.find(category => props.location.pathname === '/'+category.name.toLowerCase())
     const { page }= useSelector(state => state.page)
     const { movies,loading } = useSelector(state => state.movies)
     useEffect(() => {
@@ -27,11 +31,18 @@ const Genre = (props) => {
     return (
         <div className={styles.root}>
               <Helmet>
-                <title>{toTitleCase(props.match.params.id)}</title>
+                <title>{toTitleCase(name)}</title>
             </Helmet>
-            <Grid container spacing={6}>
-                {loading ? <h1>Loading</h1> : <Cards data={movies} />}
-            </Grid>
+           
+            {loading ?  <FingerLoader /> :
+            <> 
+             <h1 className={styles.page}>{toTitleCase(name)}</h1>
+                <Grid container spacing={6}>
+                <Cards data={movies} setImageLoaded={setImageLoaded} 
+                                didImageLoaded={imageLoaded}/>
+                </Grid>
+            </>
+            }
         </div>
     )
 }

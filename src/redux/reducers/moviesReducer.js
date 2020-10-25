@@ -4,6 +4,8 @@ const INITIAL_STATE = {
     movies: [],
     loading: false,
     error: '',
+    controller: new AbortController(),
+
  };
 
 
@@ -13,6 +15,8 @@ const INITIAL_STATE = {
            return {
              ...state, 
                 loading: action.payload.loading,
+                controller: action.payload.controller
+
            };
            case MOVIES_SUCCESS:
             return {
