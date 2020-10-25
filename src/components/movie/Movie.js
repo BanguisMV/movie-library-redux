@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 const Movie = (props) => {
     return (
         <div>
-            {JSON.stringify(props.match.params)}
+            {JSON.stringify(props.match.params.id)}
         </div>
     )
 }

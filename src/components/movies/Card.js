@@ -10,6 +10,7 @@ import styles from './movies.module.css';
 import LazyLoad from 'react-lazyload';
 import Skeleton from '@material-ui/lab/Skeleton';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { useHistory } from 'react-router-dom';
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -31,6 +32,8 @@ function toTitleCase(str) {
 
   const Cards = ({ data, setImageLoaded, didImageLoaded, title, isLoading }) => {
     const classes = useStyles();
+    const history = useHistory()
+
     return (
         <Fragment>
             <Helmet>
@@ -39,8 +42,8 @@ function toTitleCase(str) {
         {isLoading ? <CircularProgress className={styles.spinner}/> : <h1 className={styles.page}>{toTitleCase(title)}</h1>}
             <Grid container spacing={6}>
                 {data.map(movie => (    
-                        <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id} className={styles.grid} >
-                                <Card className={styles.card}>
+                        <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id} className={styles.grid}>
+                                <Card className={styles.card} onClick={() => history.push(`movie/${movie.id}`)}>
                                     <LazyLoad height={200} offset={100}>
                                             <CardMedia
                                                 component="img"

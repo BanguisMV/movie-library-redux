@@ -20,6 +20,7 @@
 .grid {
     text-align: center;
 }
+
 .notFound img {
     height: 29.5rem !important;
 }
@@ -38,6 +39,7 @@
 
 
 .card:hover {
+    cursor: pointer;
     transform: scale(1.01);
     box-shadow: 0px 10px 17px -8px rgba(0,0,0,0.75);
 }
