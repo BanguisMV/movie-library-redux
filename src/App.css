@@ -31,9 +31,3 @@ nav a {
   color: #969faf !important;
 }
 
-.errorPage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
