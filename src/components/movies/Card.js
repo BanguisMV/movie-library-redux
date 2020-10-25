@@ -2,6 +2,8 @@ import React, {Fragment} from 'react'
 import Grid from '@material-ui/core/Grid';
 import Rating from '@material-ui/lab/Rating';
 import Card from '@material-ui/core/Card';
+import Pagination from './Pagination';
+
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -10,7 +12,6 @@ import styles from './movies.module.css';
 import LazyLoad from 'react-lazyload';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { makeStyles } from "@material-ui/core/styles";
-
 const useStyles = makeStyles(theme => ({
       avatarLoader: {
         position: "absolute",
@@ -45,6 +46,7 @@ const Cards = ({ data, setImageLoaded, didImageLoaded }) => {
                                 readOnly className={styles.rating} />
                         </Grid>
                 ))}
+        <Pagination />
         </Fragment>
     )
 }

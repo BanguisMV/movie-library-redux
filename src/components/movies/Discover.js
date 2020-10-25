@@ -25,7 +25,7 @@ const DiscoverMovies = (props) => {
     const { id, name } = Discovers.find(discover => props.location.pathname === '/'+discover.name.toLowerCase())
         
     useEffect(() => {
-            props.history.push(`${window.location.pathname}?page=${page}`)
+            props.history.push(`${window.location.pathname}#page=${page}`)
             dispatch(getMoviesByDiscover(id,page))
         },[page,dispatch,id,props.history])
 

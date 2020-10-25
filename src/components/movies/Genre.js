@@ -21,10 +21,10 @@ const Genre = (props) => {
 
     const dispatch = useDispatch()
     const { id, name } = Categories.find(category => props.location.pathname === '/'+category.name.toLowerCase())
-    const { page }= useSelector(state => state.page)
+    const { page } = useSelector(state => state.page)
     const { movies,loading } = useSelector(state => state.movies)
     useEffect(() => {
-        props.history.push(`${window.location.pathname}?page=${page}`)
+        props.history.push(`${window.location.pathname}#page=${page}`)
         dispatch(getMoviesByGenre(id,'popularity',page))
     },[page,dispatch,props.history,id ])
 
@@ -33,7 +33,6 @@ const Genre = (props) => {
               <Helmet>
                 <title>{toTitleCase(name)}</title>
             </Helmet>
-           
             {loading ?  <FingerLoader /> :
             <> 
              <h1 className={styles.page}>{toTitleCase(name)}</h1>

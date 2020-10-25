@@ -1,5 +1,5 @@
 import React, { useState, Fragment} from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, withRouter } from 'react-router-dom';
 import { Categories, Discovers } from './Categories';
 import AppBar from '@material-ui/core/AppBar';
 import Divider from '@material-ui/core/Divider';
@@ -10,7 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
-import {  makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
@@ -112,7 +112,6 @@ const NavBar = (props) => {
       return array.map(arr => (
         <ListItem button key={arr.id} 
           component = { NavLink }
-          
           selected = { location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
           autoFocus = { location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
           to={`/${arr.name.toLowerCase()}`}>
@@ -142,7 +141,7 @@ const NavBar = (props) => {
     );
   
     const container = window !== undefined ? () => window().document.body : undefined;
-  
+
     return (
         <Fragment> 
         <AppBar position="fixed" className={`${classes.appBar} sidebar-scrollbar`} color='secondary'>
@@ -205,4 +204,4 @@ const NavBar = (props) => {
     )
 }
 
-export default NavBar
+export default withRouter(NavBar)
