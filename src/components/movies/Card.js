@@ -38,7 +38,7 @@ function toTitleCase(str) {
            <h1 className={styles.page}>{toTitleCase(title)}</h1>
            <Grid container spacing={6}>
             {data.map(movie => (    
-                    <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id} className={styles.grid}>
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id} className={styles.grid} >
                             <Card className={styles.card}>
                                 <LazyLoad height={400} offset={100}>
                                         <CardMedia
@@ -46,7 +46,7 @@ function toTitleCase(str) {
                                             alt={movie.original_title}
                                             height="100%"
                                             className={ didImageLoaded ? styles.loaded : styles.loading }
-                                            image={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
+                                            image={movie.poster_path ? `https://image.tmdb.org/t/p/w780/${movie.poster_path}` : 'https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?size=338&ext=jpg'}
                                             title={movie.original_title}
                                             onLoad={() => setImageLoaded(true)}
                                         />

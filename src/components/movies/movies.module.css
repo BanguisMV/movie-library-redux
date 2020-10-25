@@ -16,6 +16,9 @@
 .grid {
     text-align: center;
 }
+.notFound img {
+    height: 29.5rem !important;
+}
 .loading  {
     opacity: 0;
 }
