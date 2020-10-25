@@ -15,3 +15,5 @@ export const PAGE_RESET = 'PAGE_RESET';
 
 export const SET_GENRE = 'SET_GENRE';
 export const SET_DISCOVER = 'SET_DISCOVER';
+
+export const MOVIES_SEARCH = 'MOVIES_SEARCH';

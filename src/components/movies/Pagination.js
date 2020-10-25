@@ -37,6 +37,7 @@ const Pagination = () => {
                 <Button 
                     style={{ backgroundColor:'#441f8a' }}
                     variant="contained" 
+                    color="primary"
                     onClick={() => dispatch({type: 'PAGE_UP'})}>
                         Page {page + 1} <ArrowForwardIcon style={{fontSize:'1rem', marginLeft:'.5rem'}}/>
                 </Button>

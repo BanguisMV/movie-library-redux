@@ -1,11 +1,11 @@
-import { MOVIES_FETCHING, MOVIES_SUCCESS, MOVIES_FAILED } from '../actions/types';
+import { MOVIES_FETCHING, MOVIES_SUCCESS, MOVIES_FAILED, MOVIES_SEARCH} from '../actions/types';
 
 const INITIAL_STATE = {
     movies: [],
     loading: false,
     error: '',
     controller: new AbortController(),
-
+    search:''
  };
 
 
@@ -16,7 +16,6 @@ const INITIAL_STATE = {
              ...state, 
                 loading: action.payload.loading,
                 controller: action.payload.controller
-
            };
            case MOVIES_SUCCESS:
             return {
@@ -28,8 +27,12 @@ const INITIAL_STATE = {
                return {
                  ...state, 
                     error: action.payload.error,
-               };
-           
+            };
+            case MOVIES_SEARCH:
+               return {
+                 ...state, 
+                 search: action.payload.search,
+            };
          default: return state;
     }
 };

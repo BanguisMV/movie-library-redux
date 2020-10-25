@@ -1,7 +1,8 @@
 import React,{ useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMoviesByDiscover } from '../../redux/actions/getManyMovies';
+import queryString from 'query-string';
+import { getMoviesBySearch } from '../../redux/actions/getManyMovies';
 import { Discovers } from '../sidebar/Categories';
 import FingerLoader from './HandLoader';
 import styles from './movies.module.css';
@@ -11,26 +12,25 @@ import Cards from './Card';
 const DiscoverMovies = (props) => {
     const [imageLoaded, setImageLoaded] = useState(false)
     const dispatch = useDispatch()
+    const parsed = queryString.parse(props.location.search)
 
     const { page } = useSelector(state => state.page)
-    const { movies,loading } = useSelector(state => state.movies)
-    const { id, name } = Discovers.find(discover => props.location.pathname === '/'+discover.name.toLowerCase())
-        
-    useEffect(() => {
-            props.history.push(`${window.location.pathname}#page=${page}`)
-            dispatch(getMoviesByDiscover(id,page))
-        },[page,dispatch,id,props.history])
+    const { movies, loading} = useSelector(state => state.movies)
 
+    useEffect(() => {
+        dispatch(getMoviesBySearch(parsed.search, page))
+        },[page,dispatch,props.history,parsed.search])
     return (
         <div className={styles.root}>
         
             {  loading ? <FingerLoader /> : 
                             <Cards data={movies} 
-                                title={name}
+                                title={'Results for '+parsed.search}
                                 setImageLoaded={setImageLoaded} 
-                                didImageLoaded={imageLoaded}/>}
-               
-            
+                                didImageLoaded={imageLoaded}
+                            />
+            }
+
         </div>
     )
 }

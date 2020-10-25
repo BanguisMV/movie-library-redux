@@ -1,21 +1,14 @@
 import React,{ useEffect, useState } from 'react'
-import Helmet from 'react-helmet';
 import { withRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getMoviesByGenre } from '../../redux/actions/getManyMovies';
-import Grid from '@material-ui/core/Grid';
 import Cards from './Card';
 import FingerLoader from './HandLoader';
-
 import styles from './movies.module.css';
 import { Categories } from '../sidebar/Categories';
 
-function toTitleCase(str) {
-    return str.replace(/\w\S*/g, function(txt){
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-}
+
 const Genre = (props) => {
     const [imageLoaded, setImageLoaded] = useState(false)
 
@@ -30,17 +23,11 @@ const Genre = (props) => {
 
     return (
         <div className={styles.root}>
-              <Helmet>
-                <title>{toTitleCase(name)}</title>
-            </Helmet>
             {loading ?  <FingerLoader /> :
-            <> 
-             <h1 className={styles.page}>{toTitleCase(name)}</h1>
-                <Grid container spacing={6}>
-                <Cards data={movies} setImageLoaded={setImageLoaded} 
-                                didImageLoaded={imageLoaded}/>
-                </Grid>
-            </>
+                <Cards data={movies} 
+                title={name}
+                setImageLoaded={setImageLoaded} 
+                didImageLoaded={imageLoaded}/>
             }
         </div>
     )

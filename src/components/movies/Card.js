@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Rating from '@material-ui/lab/Rating';
 import Card from '@material-ui/core/Card';
 import Pagination from './Pagination';
-
+import Helmet from 'react-helmet';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -21,31 +21,44 @@ const useStyles = makeStyles(theme => ({
         height: "100%"
       },
   }));
-const Cards = ({ data, setImageLoaded, didImageLoaded }) => {
+
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt){
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+}
+
+  const Cards = ({ data, setImageLoaded, didImageLoaded, title }) => {
     const classes = useStyles();
     return (
         <Fragment>
+            <Helmet>
+                <title>{toTitleCase(title)}</title>
+            </Helmet>
+           <h1 className={styles.page}>{toTitleCase(title)}</h1>
+           <Grid container spacing={6}>
             {data.map(movie => (    
-                    <Grid item  xs={12} sm={6} md={4} lg={3} key={movie.id} className={styles.grid}>
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id} className={styles.grid}>
                             <Card className={styles.card}>
                                 <LazyLoad height={400} offset={100}>
                                         <CardMedia
                                             component="img"
                                             alt={movie.original_title}
                                             height="100%"
-                                            className={didImageLoaded ? styles.loaded : styles.loading }
+                                            className={ didImageLoaded ? styles.loaded : styles.loading }
                                             image={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
                                             title={movie.original_title}
                                             onLoad={() => setImageLoaded(true)}
                                         />
                                 </LazyLoad>
-                            { didImageLoaded ? null : <Skeleton animation='wave' variant="rect" className={classes.avatarLoader} /> }   
+                            {didImageLoaded ? null : <Skeleton animation='wave' variant="rect" className={classes.avatarLoader} /> }   
                             </Card>
                                 <Typography gutterBottom variant="h6" component="h6"> {movie.original_title} </Typography>
                                 <Rating name="half-rating-read" value={(movie.vote_average / 2)} precision={0.5} 
                                 readOnly className={styles.rating} />
                         </Grid>
                 ))}
+                </Grid>
         <Pagination />
         </Fragment>
     )

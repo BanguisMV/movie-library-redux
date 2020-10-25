@@ -1,5 +1,5 @@
 import React, { useState, Fragment} from 'react';
-import { NavLink, useLocation, withRouter } from 'react-router-dom';
+import { NavLink, useLocation, withRouter, Redirect } from 'react-router-dom';
 import { Categories, Discovers } from './Categories';
 import AppBar from '@material-ui/core/AppBar';
 import Divider from '@material-ui/core/Divider';
@@ -15,6 +15,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
 import { SwipeableDrawer } from '@material-ui/core';
+import { getMoviesBySearch } from '../../redux/actions/getManyMovies';
+import { useDispatch, useSelector } from 'react-redux';
 
 const drawerWidth = 210;
 
@@ -101,14 +103,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavBar = (props) => {
+  const dispatch = useDispatch()
+  const  { search } = useSelector(state => state.movies)
     const location = useLocation()
     const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
+    const [value, setValue] = useState('');
+
     const [mobileOpen, setMobileOpen] = useState(false);
     const handleDrawerToggle = () => setMobileOpen(prevState => !prevState);
 
-  const loopCategory = (array, path) => {
+  const loopCategory = (array) => {
       return array.map(arr => (
         <ListItem button key={arr.id} 
           component = { NavLink }
@@ -158,19 +164,24 @@ const NavBar = (props) => {
           <Typography className={classes.title} variant="h6" noWrap>
             Movie Library 2.0
           </Typography>
-          <div className={classes.search}>
+          <form className={classes.search} onSubmit={(e) => {
+            dispatch({type:'MOVIES_SEARCH', payload:{search:value}})
+            e.preventDefault()
+            props.history.push(`/results?search=${value}`)
+            }}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
               placeholder="Search…"
+              onChange={(e) => setValue(e.target.value)}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </div>
+          </form>
         </Toolbar>
         </AppBar>
 

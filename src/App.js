@@ -6,6 +6,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Movie from './components/movie/Movie';
 import Genre from './components/movies/Genre';
 import Discover from './components/movies/Discover';
+import SearchResult from './components/movies/SearchResult';
+
 import { Discovers, Categories } from './components/sidebar/Categories';
 
 const rootStyle = makeStyles((theme) => ({
@@ -32,6 +34,7 @@ const classes = rootStyle();
             <Route exact path="/" render={() => <Redirect to="/popular" />} />
             {Discovers.map(discover => (<Route exact path={`/${discover.name.toLowerCase()}`} key={discover.id} component={Discover} />))}
             {Categories.map(category => (<Route exact path={`/${category.name.toLowerCase()}`} key={category.id} component={Genre} />))}
+            <Route exact path='/results' component={SearchResult} />
             <Route exact path='/movie/:id' component={Movie} />
             <Route path='*' render={() => <h1>Error</h1>} />
           </Switch>
