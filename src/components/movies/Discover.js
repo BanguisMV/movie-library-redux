@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMoviesByDiscover } from '../../redux/actions/getManyMovies';
 import { Discovers } from '../sidebar/Categories';
-import FingerLoader from './HandLoader';
 import styles from './movies.module.css';
 import Cards from './Card';
 
@@ -11,9 +10,8 @@ import Cards from './Card';
 const DiscoverMovies = (props) => {
     const [imageLoaded, setImageLoaded] = useState(false)
     const dispatch = useDispatch()
-
     const { page } = useSelector(state => state.page)
-    const { movies,loading } = useSelector(state => state.movies)
+    const { movies, loading } = useSelector(state => state.movies)
     const { id, name } = Discovers.find(discover => props.location.pathname === '/'+discover.name.toLowerCase())
         
     useEffect(() => {
@@ -23,14 +21,12 @@ const DiscoverMovies = (props) => {
 
     return (
         <div className={styles.root}>
-        
-            {  loading ? <FingerLoader /> : 
-                            <Cards data={movies} 
-                                title={name}
-                                setImageLoaded={setImageLoaded} 
-                                didImageLoaded={imageLoaded}/>}
-               
-            
+            <Cards data={movies} 
+                title={name}
+                isLoading={loading}
+                setImageLoaded={setImageLoaded} 
+                didImageLoaded={imageLoaded}
+             />
         </div>
     )
 }

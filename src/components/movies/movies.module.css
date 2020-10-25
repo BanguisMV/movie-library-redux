@@ -1,8 +1,12 @@
 .root {
     flex-grow: 1;
-    padding: 1rem;
+    width: 100%;
 
 }
+.spinner {
+  margin: 1rem;
+}
+
 .root h6 {
    color: #969faf;
 }
@@ -36,6 +40,13 @@
 .card:hover {
     transform: scale(1.01);
     box-shadow: 0px 10px 17px -8px rgba(0,0,0,0.75);
+}
+
+@media(max-width:956px) {
+    .spinner {
+        top: 50%;
+        left: 45%;
+    }
 }
 
 @media(max-width:600px) {

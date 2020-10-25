@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getMoviesByGenre } from '../../redux/actions/getManyMovies';
 import Cards from './Card';
-import FingerLoader from './HandLoader';
 import styles from './movies.module.css';
 import { Categories } from '../sidebar/Categories';
 
@@ -23,12 +22,11 @@ const Genre = (props) => {
 
     return (
         <div className={styles.root}>
-            {loading ?  <FingerLoader /> :
                 <Cards data={movies} 
                 title={name}
+                isLoading={loading}
                 setImageLoaded={setImageLoaded} 
                 didImageLoaded={imageLoaded}/>
-            }
         </div>
     )
 }

@@ -3,8 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import queryString from 'query-string';
 import { getMoviesBySearch } from '../../redux/actions/getManyMovies';
-import { Discovers } from '../sidebar/Categories';
-import FingerLoader from './HandLoader';
 import styles from './movies.module.css';
 import Cards from './Card';
 
@@ -23,14 +21,12 @@ const DiscoverMovies = (props) => {
     return (
         <div className={styles.root}>
         
-            {  loading ? <FingerLoader /> : 
-                            <Cards data={movies} 
-                                title={'Results for '+parsed.search}
-                                setImageLoaded={setImageLoaded} 
-                                didImageLoaded={imageLoaded}
-                            />
-            }
-
+                <Cards data={movies} 
+                    isLoading={loading}
+                    title={'Results for '+parsed.search}
+                    setImageLoaded={setImageLoaded} 
+                    didImageLoaded={imageLoaded}
+                />
         </div>
     )
 }

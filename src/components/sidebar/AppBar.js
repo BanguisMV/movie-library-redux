@@ -1,5 +1,5 @@
 import React, { useState, Fragment} from 'react';
-import { NavLink, useLocation, withRouter, Redirect } from 'react-router-dom';
+import { NavLink, useLocation, withRouter } from 'react-router-dom';
 import { Categories, Discovers } from './Categories';
 import AppBar from '@material-ui/core/AppBar';
 import Divider from '@material-ui/core/Divider';
@@ -15,8 +15,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
 import { SwipeableDrawer } from '@material-ui/core';
-import { getMoviesBySearch } from '../../redux/actions/getManyMovies';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 
 const drawerWidth = 210;
 
@@ -104,7 +103,6 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = (props) => {
   const dispatch = useDispatch()
-  const  { search } = useSelector(state => state.movies)
     const location = useLocation()
     const { window } = props;
     const classes = useStyles();
@@ -118,6 +116,7 @@ const NavBar = (props) => {
       return array.map(arr => (
         <ListItem button key={arr.id} 
           component = { NavLink }
+          onClick={() => setMobileOpen(false)}
           selected = { location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
           autoFocus = { location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
           to={`/${arr.name.toLowerCase()}`}>
@@ -127,13 +126,12 @@ const NavBar = (props) => {
   }
     const drawer = (
       <div>
-        <img src="https://movie.banguismv.wtf/static/media/Poster.66bbb98a.png" alt="" style={{width:'100%'}} />
+        <img src="https://movie.banguismv.wtf/static/media/Poster.66bbb98a.png" alt="Chilling" style={{width:'100%'}} />
         <Divider />
         <Typography className={classes.genre} variant="h5" noWrap>
            Discover
           </Typography>
         <List>
-    
             {loopCategory(Discovers)}        
         </List>
         <Divider />
@@ -175,10 +173,7 @@ const NavBar = (props) => {
             <InputBase
               placeholder="Search…"
               onChange={(e) => setValue(e.target.value)}
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
+              classes={{ root: classes.inputRoot, input: classes.inputInput}}
               inputProps={{ 'aria-label': 'search' }}
             />
           </form>

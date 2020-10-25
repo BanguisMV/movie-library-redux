@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+
 const Pagination = () => {
     const { page } = useSelector(state => state.page)
     const dispatch = useDispatch()
@@ -44,7 +45,7 @@ const Pagination = () => {
        </>
    }
     return (
-        <div style={{display:'flex', justifyContent:'space-around', alignItems:'center', width:'100%'}}>
+        <div style={{display:'flex', justifyContent:'space-around', alignItems:'center', width:'100%', margin:'2rem'}}>
             {button}
         </div>
     )
