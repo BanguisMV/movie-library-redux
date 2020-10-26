@@ -1,7 +1,7 @@
 .movie {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     max-width: 1400px;
     width: 100%;
     margin: 0 auto;
@@ -36,6 +36,7 @@
 text-indent: 1rem;
 }
 .imageContainer {
+
     margin: 1rem;
     width: 60%;
     object-fit: cover;
@@ -54,8 +55,13 @@ text-indent: 1rem;
     color:#fff;
     z-index: 2000 !important;
 }
+.noTrailer {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
 .related {
-    background-color: cadetblue;
+    flex-grow: 1;
 }
 .image {
     width: 100%;
@@ -72,7 +78,10 @@ text-indent: 1rem;
     .genreItems {
         justify-content: center;
     }
-    
+    .noTrailer {
+        height: 50vh;
+        width: 80vw;
+    }
 }
 @media(max-width:500px) {
     .trailer {

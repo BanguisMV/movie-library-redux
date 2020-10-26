@@ -1,5 +1,7 @@
 https://image.tmdb.org/t/p/w780//ugZW8ocsrfgI95pnQ7wrmKDxIe.jpg
+
 https://api.themoviedb.org/3/movie/528085?api_key=c24e2e0c38251c16e41291ca0067c75d&append_to_response=videos
+
 https://api.themoviedb.org/3/discover/movie?api_key=e366d974f73ae203397850eadc7bce1f&with_genres=12&sort_by=popularity.desc
 
 

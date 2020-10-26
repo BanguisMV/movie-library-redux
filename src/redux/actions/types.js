@@ -8,7 +8,7 @@ export const MOVIES_FETCHING = 'MOVIES_FETCHING';
 export const MOVIES_SUCCESS = 'MOVIES_SUCCESS';
 export const MOVIES_FAILED = 'MOVIES_FAILED';
 export const MOVIES_SORT = 'MOVIES_SORT';
-
+export const MOVIES_SIMILAR = 'MOVIES_SIMILAR';
 export const PAGE_UP = 'PAGE_UP';
 export const PAGE_DOWN = 'PAGE_DOWN';
 export const PAGE_RESET = 'PAGE_RESET';

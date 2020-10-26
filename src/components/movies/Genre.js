@@ -9,15 +9,16 @@ import queryString from 'query-string';
 
 
 const Genre = (props) => {
+
     const location = useLocation()
     const dispatch = useDispatch()
     const [imageLoaded, setImageLoaded] = useState(false)
 
      // Some deconstruction
-    const { id, name } = Categories.find(category => props.location.pathname === '/'+category.name.toLowerCase())
+    const { id, name } = Categories.find(category => props.location.pathname.toLowerCase() === '/'+category.name.toLowerCase())
     const { page } = queryString.parse(location.hash)
     const { movies, loading, sort } = useSelector(state => state.movies)
-    
+ 
     useEffect(() => {
         dispatch(getMoviesByGenre(id,page))
     },[page,dispatch,props.history,id,sort ])

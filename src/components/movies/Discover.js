@@ -15,7 +15,7 @@ const DiscoverMovies = (props) => {
 
     // Some deconstruction
     const { movies, loading } = useSelector(state => state.movies)
-    const { id, name } = Discovers.find(discover => props.location.pathname === '/'+discover.name.toLowerCase())
+    const { id, name } = Discovers.find(discover => props.location.pathname.toLowerCase() === '/'+discover.name.toLowerCase())
     const { page } = queryString.parse(location.hash)
     
     useEffect(() => {
