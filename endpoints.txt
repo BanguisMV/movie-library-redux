@@ -7,3 +7,6 @@ https://api.themoviedb.org/3/discover/movie?api_key=e366d974f73ae203397850eadc7b
 https://api.themoviedb.org/3/movie/popular?api_key=e366d974f73ae203397850eadc7bce1f
 
 API_KEY = c24e2e0c38251c16e41291ca0067c75d
+
+Hi again, these are the the sizes that I know: "w92", "w154", "w185", "w342", "w500", "w780", or "original"; and I think there isn't any other sizes "original" will give you a very large poster, if you're on mobile "w185" is the best choice
+

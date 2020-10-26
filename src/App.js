@@ -15,11 +15,6 @@ const rootStyle = makeStyles((theme) => ({
     display: 'flex',
   },
   toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
- 
 }));
 
 const ResponsiveDrawer = (props) => {
@@ -30,7 +25,7 @@ const classes = rootStyle();
       <Scroll>
       <CssBaseline />
         <SideNav />
-        <main className={classes.content}>
+        <main className='content'>
           <div className={classes.toolbar} />
           <Switch>
               <Route exact path="/" render={() => <Redirect to="/popular" />} />

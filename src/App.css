@@ -27,5 +27,8 @@ body::-webkit-scrollbar-thumb {
   background-color: #441f8a;
 }
 
-
+.content {
+  padding:2rem;
+  width: 100vw;
+}
 

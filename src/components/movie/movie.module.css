@@ -1,0 +1,34 @@
+.movie {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+}
+.imageContainer {
+    width: 80%;
+    height: 25rem;
+    object-fit: cover;
+}
+.image {
+    width: 100%;
+    height: 100%;
+}
+
+@media(max-width: 956px) {
+    .imageContainer {
+        width: 100%;
+        height: 20rem;
+    }
+}
+@media(max-width:500px) {
+    .imageContainer {
+        width: 100%;
+        height: 15rem;
+    }
+}
+
+
+

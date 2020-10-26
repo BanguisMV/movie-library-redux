@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from 'react-redux';
@@ -83,13 +83,13 @@ const Cards = ({ data, setImageLoaded, didImageLoaded, title, isLoading,isGenre 
                 {data.map(movie => (    
                         <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id} className={styles.grid}>
                                 <Card className={styles.card} onClick={() => history.push(`movie/${movie.id}`)}>
-                                    <LazyLoad height={200} offset={100}>
+                                    <LazyLoad height={200}  once>
                                             <CardMedia
                                                 component="img"
                                                 alt={movie.original_title}
                                                 height="100%"
                                                 className={ didImageLoaded ? styles.loaded : styles.loading }
-                                                image={movie.poster_path ? `https://image.tmdb.org/t/p/w780/${movie.poster_path}` : 'https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?size=338&ext=jpg'}
+                                                image={movie.poster_path ? `https://image.tmdb.org/t/p/w342/${movie.poster_path}` : 'https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?size=338&ext=jpg'}
                                                 title={movie.original_title}
                                                 onLoad={() => setImageLoaded(true)}
                                             />

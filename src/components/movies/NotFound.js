@@ -1,15 +1,14 @@
 import React from 'react'
-import notFound from '../../404.jpg';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'  
 const useStyles = makeStyles((theme) => ({
     root: {
-            color:'#441f8a',
-            textAlign:'center',
-            padding:'2rem',
-            backgroundColor:'inherit',
+      color:'#441f8a',
+      textAlign:'center',
+      padding:'2rem',
+      backgroundColor:'inherit',
     },
     button: {
       marginTop:'10rem'
