@@ -1,4 +1,4 @@
-import { PAGE_DOWN, PAGE_UP, PAGE_RESET } from '../actions/types';
+import { PAGE_DOWN, PAGE_UP, PAGE_RESET,PAGE_SET } from '../actions/types';
 
 const INITIAL_STATE = {
     page:1
@@ -20,8 +20,13 @@ const INITIAL_STATE = {
             case PAGE_RESET:
                 return {
                   ...state, 
-                     page: 1 ,
-                };
+                     page: 1,
+            };
+            case PAGE_SET:
+                return {
+                  ...state, 
+                     page: action.payload.page,
+            };
          default: return state;
     }
 

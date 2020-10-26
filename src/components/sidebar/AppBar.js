@@ -1,5 +1,6 @@
 import React, { useState, Fragment} from 'react';
-import { NavLink, useLocation, withRouter } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import { Categories, Discovers } from './Categories';
 import AppBar from '@material-ui/core/AppBar';
 import Divider from '@material-ui/core/Divider';
@@ -10,14 +11,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
-import { SwipeableDrawer } from '@material-ui/core';
-import { useDispatch} from 'react-redux';
 
-const drawerWidth = 210;
+import { SwipeableDrawer } from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+
+const drawerWidth = 190;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -102,8 +103,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavBar = (props) => {
+
   const dispatch = useDispatch()
+
     const location = useLocation()
+    const history = useHistory()
     const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
@@ -115,8 +119,13 @@ const NavBar = (props) => {
   const loopCategory = (array) => {
       return array.map(arr => (
         <ListItem button key={arr.id} 
-          component = { NavLink }
-          onClick={() => setMobileOpen(false)}
+          component = {NavLink}
+          onClick={() => {
+            setMobileOpen(false)
+            dispatch({type:'PAGE_RESET'})
+            dispatch({type:'MOVIES_SORT', payload: {sort:'popularity'}})
+
+          }}
           selected = { location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
           autoFocus = { location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
           to={`/${arr.name.toLowerCase()}`}>
@@ -128,19 +137,19 @@ const NavBar = (props) => {
       <div>
         <img src="https://movie.banguismv.wtf/static/media/Poster.66bbb98a.png" alt="Chilling" style={{width:'100%'}} />
         <Divider />
-        <Typography className={classes.genre} variant="h5" noWrap>
-           Discover
-          </Typography>
-        <List>
-            {loopCategory(Discovers)}        
-        </List>
+            <Typography className={classes.genre} variant="h5" noWrap>
+              Discover
+              </Typography>
+            <List>
+                {loopCategory(Discovers)}        
+            </List>
         <Divider />
-          <Typography className={classes.genre} variant="h5" noWrap>
-            Genre
-          </Typography>
-        <List>
-          {loopCategory(Categories)}        
-        </List>
+            <Typography className={classes.genre} variant="h5" noWrap>
+              Genre
+            </Typography>
+            <List>
+              {loopCategory(Categories)}        
+            </List>
       </div>
     );
   
@@ -149,35 +158,40 @@ const NavBar = (props) => {
     return (
         <Fragment> 
         <AppBar position="fixed" className={`${classes.appBar} sidebar-scrollbar`} color='secondary'>
-            <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Movie Library 2.0
-          </Typography>
-          <form className={classes.search} onSubmit={(e) => {
-            dispatch({type:'MOVIES_SEARCH', payload:{search:value}})
-            e.preventDefault()
-            props.history.push(`/results?search=${value}`)
-            }}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              onChange={(e) => setValue(e.target.value)}
-              classes={{ root: classes.inputRoot, input: classes.inputInput}}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </form>
-        </Toolbar>
+              <Toolbar>
+                  <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    edge="start"
+                    onClick={handleDrawerToggle}
+                    className={classes.menuButton}>
+                    <MenuIcon />
+              </IconButton>
+              
+              <Typography className={classes.title} variant="h6" noWrap>
+                Movie Library 2.0
+              </Typography>
+              
+              <form className={classes.search} onSubmit={(e) => {
+                dispatch({type:'MOVIES_SEARCH', payload:{ search:value }})
+                dispatch({type:'PAGE_RESET'})
+                e.preventDefault()
+                history.push(`/results?search=${value}`)
+                }}>
+
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+
+                <InputBase
+                  placeholder="Search…"
+                  onChange={(e) => setValue(e.target.value)}
+                  classes={{ root: classes.inputRoot, input: classes.inputInput}}
+                  inputProps={{ 'aria-label': 'search' }}
+                />
+              </form>
+            
+              </Toolbar>
         </AppBar>
 
       <nav className={classes.drawer} aria-label="mailbox folders">
@@ -197,11 +211,11 @@ const NavBar = (props) => {
           </Hidden>
           <Hidden smDown implementation="css">
               <SwipeableDrawer 
-              onClose={handleDrawerToggle}
-              onOpen={handleDrawerToggle}
-              classes={{ paper: classes.drawerPaper, }} 
-              variant="permanent" 
-              open >
+                onClose={handleDrawerToggle}
+                onOpen={handleDrawerToggle}
+                classes={{ paper: classes.drawerPaper, }} 
+                variant="permanent" 
+                open >
                 {drawer}
               </SwipeableDrawer>
           </Hidden>
@@ -210,4 +224,4 @@ const NavBar = (props) => {
     )
 }
 
-export default withRouter(NavBar)
+export default NavBar

@@ -1,34 +1,39 @@
 import React,{ useEffect, useState } from 'react'
-import { withRouter } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getMoviesByGenre } from '../../redux/actions/getManyMovies';
 import Cards from './Card';
 import styles from './movies.module.css';
 import { Categories } from '../sidebar/Categories';
+import queryString from 'query-string';
 
 
 const Genre = (props) => {
+    const location = useLocation()
+    const dispatch = useDispatch()
     const [imageLoaded, setImageLoaded] = useState(false)
 
-    const dispatch = useDispatch()
+     // Some deconstruction
     const { id, name } = Categories.find(category => props.location.pathname === '/'+category.name.toLowerCase())
-    const { page } = useSelector(state => state.page)
-    const { movies,loading } = useSelector(state => state.movies)
+    const { page } = queryString.parse(location.hash)
+    const { movies, loading, sort } = useSelector(state => state.movies)
+    
     useEffect(() => {
-        props.history.push(`${window.location.pathname}#page=${page}`)
-        dispatch(getMoviesByGenre(id,'popularity',page))
-    },[page,dispatch,props.history,id ])
+        dispatch(getMoviesByGenre(id,page))
+    },[page,dispatch,props.history,id,sort ])
 
     return (
         <div className={styles.root}>
+            
                 <Cards data={movies} 
                 title={name}
+                isGenre={true}
                 isLoading={loading}
                 setImageLoaded={setImageLoaded} 
-                didImageLoaded={imageLoaded}/>
+                didImageLoaded={imageLoaded} />
         </div>
     )
 }
 
-export default withRouter(Genre)
+export default Genre

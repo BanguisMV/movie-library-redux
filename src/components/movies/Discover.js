@@ -1,23 +1,26 @@
 import React,{ useEffect, useState } from 'react'
-import { withRouter } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMoviesByDiscover } from '../../redux/actions/getManyMovies';
 import { Discovers } from '../sidebar/Categories';
 import styles from './movies.module.css';
 import Cards from './Card';
+import queryString from 'query-string';
 
 
 const DiscoverMovies = (props) => {
-    const [imageLoaded, setImageLoaded] = useState(false)
+    const location = useLocation()
     const dispatch = useDispatch()
-    const { page } = useSelector(state => state.page)
+    const [imageLoaded, setImageLoaded] = useState(false)
+
+    // Some deconstruction
     const { movies, loading } = useSelector(state => state.movies)
     const { id, name } = Discovers.find(discover => props.location.pathname === '/'+discover.name.toLowerCase())
-        
+    const { page } = queryString.parse(location.hash)
+    
     useEffect(() => {
-            props.history.push(`${window.location.pathname}#page=${page}`)
-            dispatch(getMoviesByDiscover(id,page))
-        },[page,dispatch,id,props.history])
+        dispatch(getMoviesByDiscover(id,page))
+    },[page,dispatch,id,props.history])
 
     return (
         <div className={styles.root}>
@@ -25,10 +28,9 @@ const DiscoverMovies = (props) => {
                 title={name}
                 isLoading={loading}
                 setImageLoaded={setImageLoaded} 
-                didImageLoaded={imageLoaded}
-             />
+                didImageLoaded={imageLoaded}/>
         </div>
     )
 }
 
-export default withRouter(DiscoverMovies)
+export default DiscoverMovies

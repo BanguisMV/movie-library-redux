@@ -1,4 +1,7 @@
-import React, {Fragment} from 'react'
+import React, { Fragment, useState } from 'react'
+import { useHistory } from 'react-router-dom';
+import { makeStyles } from "@material-ui/core/styles";
+import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Rating from '@material-ui/lab/Rating';
 import Card from '@material-ui/core/Card';
@@ -10,9 +13,11 @@ import styles from './movies.module.css';
 import LazyLoad from 'react-lazyload';
 import Skeleton from '@material-ui/lab/Skeleton';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { useHistory } from 'react-router-dom';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
-import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
       avatarLoader: {
@@ -22,6 +27,17 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         height: "100%"
       },
+      selection: {
+          display:'flex',
+          justifyContent:'space-between',
+          alignItems:'flex-start',
+          margin:'1rem 0',
+          flexWrap:'wrap'
+      },
+      formControl: {
+        margin: theme.spacing(1),
+        width: 190,
+      },
   }));
 
 function toTitleCase(str) {
@@ -30,16 +46,39 @@ function toTitleCase(str) {
     });
 }
 
-  const Cards = ({ data, setImageLoaded, didImageLoaded, title, isLoading }) => {
+
+const Cards = ({ data, setImageLoaded, didImageLoaded, title, isLoading,isGenre }) => {
     const classes = useStyles();
     const history = useHistory()
+    const dispatch = useDispatch()
+  const { sort } = useSelector(state => state.movies)
+    const handleChange = (e) => dispatch({type:'MOVIES_SORT', payload: {sort: e.target.value}})
 
+    const SortBy =  <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="grouped-select">Sort By </InputLabel>
+                    <Select defaultValue="popularity" 
+                    value={sort} 
+                    id="grouped-select"  
+                    style={{color:' #441f8a'}}
+                    onChange={handleChange}>
+                        <MenuItem value='popularity'>Popularity</MenuItem>
+                        <MenuItem value='release_date'>Release Date</MenuItem>
+                        <MenuItem value='revenue'>Revenue</MenuItem>
+                        <MenuItem value='vote_average'>Vote Average</MenuItem>
+                        <MenuItem value='vote_count'>Vote Count</MenuItem>
+
+                    </Select>
+                </FormControl>
     return (
         <Fragment>
             <Helmet>
                 <title>{toTitleCase(title)}</title>
             </Helmet>
-        {isLoading ? <CircularProgress className={styles.spinner}/> : <h1 className={styles.page}>{toTitleCase(title)}</h1>}
+            <div className={classes.selection}>
+                {isLoading ? <CircularProgress className={styles.spinner}/> : <h1 className={styles.page}>{toTitleCase(title)}</h1>}
+                {isGenre ? SortBy : null}
+            </div>
+            
             <Grid container spacing={6}>
                 {data.map(movie => (    
                         <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id} className={styles.grid}>
@@ -55,10 +94,14 @@ function toTitleCase(str) {
                                                 onLoad={() => setImageLoaded(true)}
                                             />
                                     </LazyLoad>
-                                {didImageLoaded ? null : <Skeleton animation='wave' variant="rect" className={classes.avatarLoader} /> }   
+                            {didImageLoaded ? null : <Skeleton animation='wave' variant="rect" className={classes.avatarLoader} /> }   
                                 </Card>
                                     <Typography gutterBottom variant="h6" component="h6"> {movie.original_title} </Typography>
-                                    <Rating name="half-rating-read" value={(movie.vote_average / 2)} precision={0.5} 
+                                    <Rating 
+                                    name="half-rating-read" 
+                                    max={5} 
+                                    value={(movie.vote_average / 2)} 
+                                    precision={0.5} 
                                     readOnly className={styles.rating} />
                             </Grid>
                     ))}

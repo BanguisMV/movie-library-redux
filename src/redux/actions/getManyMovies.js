@@ -40,17 +40,14 @@ export const getMoviesByDiscover = (discover, page) => {
         const signal = newController.signal;
 
      dispatch(LOADING(newController))
-        fetch(`https://api.themoviedb.org/3/movie/${discover}?api_key=${API_KEY}&page=${page}`, {signal})
+        fetch(`https://api.themoviedb.org/3/movie/${discover}?api_key=${API_KEY}&page=${page}&include_adult=true`, {signal})
         .then(res => res.json())
         .then(res => dispatch(SUCCESS(res.results)))
         .catch(err =>  dispatch(FAILED(err.toString())))
     }
 }
-  // https://api.themoviedb.org/3/search/movie?api_key=c24e2e0c38251c16e41291ca0067c75d
 
-
-
-  export const getMoviesBySearch = (keyword,page) => {
+export const getMoviesBySearch = (keyword,page) => {
     return (dispatch, getState)  => {
      const { controller } = getState().movies;
      controller.abort();
@@ -62,22 +59,16 @@ export const getMoviesByDiscover = (discover, page) => {
         .then(res => dispatch(SUCCESS(res.results)))
         .catch(err =>  dispatch(FAILED(err)))
     }
- }
+}
  
-
-
-
-
-
-
-export const getMoviesByGenre = (genre,sort,page) => {
+export const getMoviesByGenre = (genre,page) => {
    return (dispatch, getState)  => {
-    const { controller } = getState().movies;
+    const { controller,sort } = getState().movies;
     controller.abort();
     const newController = new AbortController();
     const signal = newController.signal;
     dispatch(LOADING(newController))
-       fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genre}&sort_by=${sort}.desc&page=${page}`, {signal})
+       fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&include_adult=true&with_genres=${genre}&sort_by=${sort}.desc&page=${page}`, {signal})
        .then(res => res.json())
        .then(res => dispatch(SUCCESS(res.results)))
        .catch(err =>  dispatch(FAILED(err)))
