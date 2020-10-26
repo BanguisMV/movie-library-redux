@@ -116,7 +116,7 @@ const NavBar = (props) => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const handleDrawerToggle = () => setMobileOpen(prevState => !prevState);
 
-  const loopCategory = (array) => {
+  const loopCategory = (array,icon) => {
       return array.map(arr => (
         <ListItem button key={arr.id} 
           component = {NavLink}
@@ -124,12 +124,11 @@ const NavBar = (props) => {
             setMobileOpen(false)
             dispatch({type:'PAGE_RESET'})
             dispatch({type:'MOVIES_SORT', payload: {sort:'popularity'}})
-
           }}
           selected = { location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
           autoFocus = { location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
           to={`/${arr.name.toLowerCase()}`}>
-          <ListItemText primary={arr.name} value={arr.id} />
+         {icon} &nbsp; <ListItemText primary={arr.name} value={arr.id} />
        </ListItem>
     ))
   }
@@ -141,14 +140,14 @@ const NavBar = (props) => {
               Discover
               </Typography>
             <List>
-                {loopCategory(Discovers)}        
+                {loopCategory(Discovers, '★')}        
             </List>
         <Divider />
             <Typography className={classes.genre} variant="h5" noWrap>
               Genre
             </Typography>
             <List>
-              {loopCategory(Categories)}        
+              {loopCategory(Categories, '◉')}        
             </List>
       </div>
     );

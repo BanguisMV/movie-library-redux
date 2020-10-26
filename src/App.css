@@ -1,4 +1,4 @@
-a, li {
+nav a, li {
   color: #969faf !important;
 }
 *::-webkit-scrollbar {
@@ -24,7 +24,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #441f8a;
+background-color: #441f8a;
 }
 
 .content {
