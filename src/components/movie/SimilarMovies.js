@@ -6,7 +6,7 @@ const SimilarMovies = () => {
     console.log(match);
     return (
         <div>
-            similar
+            similar moviesasdas
         </div>
     )
 }
