@@ -54,10 +54,10 @@ const FAILED = (error) => {
         }
     }
 }
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const getMovie = (MOVIE_ID) => {
     return dispatch => {
-        const API_KEY = process.env.REACT_APP_API_KEY;
         dispatch(LOADING())
         fetch(`https://api.themoviedb.org/3/movie/${MOVIE_ID}?api_key=${API_KEY}&append_to_response=videos`)
         .then(res => res.json())
@@ -68,10 +68,7 @@ export const getMovie = (MOVIE_ID) => {
 
 export const getSimilarMovie = (MOVIE_ID, page) => {
     return dispatch => {
-        const API_KEY = process.env.REACT_APP_API_KEY;
         dispatch(LOADING())
-
-        //https://api.themoviedb.org/3/movie/724989/api_key=e366d974f73ae203397850eadc7bce1f
         fetch(`https://api.themoviedb.org/3/movie/${MOVIE_ID}/similar?api_key=${API_KEY}&page=${page ? page : 1}`)
         .then(res => res.json())
         .then(res => dispatch(SUCCESS_SIMILAR(res)))
@@ -81,10 +78,7 @@ export const getSimilarMovie = (MOVIE_ID, page) => {
 
 export const getCast = (MOVIE_ID, page) => {
     return dispatch => {
-        const API_KEY = process.env.REACT_APP_API_KEY;
         dispatch(LOADING())
-
-        //https://api.themoviedb.org/3/movie/724989/api_key=e366d974f73ae203397850eadc7bce1f
         fetch(`https://api.themoviedb.org/3/movie/${MOVIE_ID}/credits?api_key=${API_KEY}&page=${page ? page : 1}`)
         .then(res => res.json())
         .then(res => dispatch(SUCCESS_CAST(res)))
@@ -94,10 +88,7 @@ export const getCast = (MOVIE_ID, page) => {
 
 export const getImages = (MOVIE_ID) => {
     return dispatch => {
-        const API_KEY = process.env.REACT_APP_API_KEY;
         dispatch(LOADING())
-
-        //https://api.themoviedb.org/3/movie/724989/api_key=e366d974f73ae203397850eadc7bce1f
         fetch(`https://api.themoviedb.org/3/movie/${MOVIE_ID}/images?api_key=${API_KEY}`)
         .then(res => res.json())
         .then(res => dispatch(SUCCESS_IMAGES(res)))

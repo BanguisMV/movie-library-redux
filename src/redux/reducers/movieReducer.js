@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     error: '',
     similarMovies:[],
     cast:[],
-    images: []
+    images: [],
  };
 
 

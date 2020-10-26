@@ -33,6 +33,7 @@ const INITIAL_STATE = {
                return {
                  ...state, 
                  search: action.payload.search,
+
             };
             case TYPES.MOVIES_SORT:
                return {
