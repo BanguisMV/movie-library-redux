@@ -133,7 +133,7 @@ const NavBar = (props) => {
     ))
   }
     const drawer = (
-      <div>
+      <div className='sidebar'>
         <img src="https://movie.banguismv.wtf/static/media/Poster.66bbb98a.png" alt="Chilling" style={{width:'100%'}} />
         <Divider />
             <Typography className={classes.genre} variant="h5" noWrap>

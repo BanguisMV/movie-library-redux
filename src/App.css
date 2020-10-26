@@ -4,7 +4,15 @@ nav a, li {
 *::-webkit-scrollbar {
   width: .5rem;
 }
+@media(min-width:100px) {
+  nav a, li {
+    color: #969faf !important;
+  }
+ .sidebar a {
+  color: #969faf !important;
 
+ }
+}
 @media(max-width:959px) {
   *::-webkit-scrollbar {
     width: 4px;

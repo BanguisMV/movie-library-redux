@@ -19,6 +19,7 @@ const Poster = ({movie ,handleToggle}) => {
         </Button>
         
         <Button 
+        className={styles.TrailerButton}
         onClick={handleToggle}
         variant="contained" 
         color="primary" 

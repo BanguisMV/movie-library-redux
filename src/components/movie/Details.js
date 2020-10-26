@@ -24,7 +24,7 @@ const Details = ({movie}) => {
                 </div>  
                  <h3>Plot</h3>
                 <Typography variant="subtitle2" gutterBottom> {movie.overview} </Typography>
-                <Typography variant="body2" display="block" gutterBottom style={{margin:'1rem 0', textAlign:'center'}}>
+                <Typography variant="body2"  gutterBottom style={{margin:'1rem 0', textAlign:'center'}}>
                     Runtime: {movie.runtime}min / Revenue: ${addCommas(movie.revenue)} / Language: {movie && movie.genres && movie.spoken_languages[0].name} 
                 </Typography>
             </div>

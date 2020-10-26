@@ -8,7 +8,6 @@
     flex-wrap: wrap;
     color: #969faf !important;
     background-color: #e2e0f73b;
-    padding: 1rem;
 }
 .loading {
     display: flex;
@@ -31,11 +30,13 @@
 .genreItems {
     display:flex;
     justify-content: flex-start;
+    flex-wrap: wrap;
 }
 .overview h6 {
 text-indent: 1rem;
 }
 .imageContainer {
+    margin: 1rem;
     width: 60%;
     object-fit: cover;
 }
@@ -44,11 +45,11 @@ text-indent: 1rem;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-around;
-    margin: 1rem 0;
 }
-.CTA a {
-    margin-bottom: 1rem;
+.CTA > *{
+    margin: 1rem !important;
 }
+
 .backdrop {
     color:#fff;
     z-index: 2000 !important;
@@ -71,10 +72,14 @@ text-indent: 1rem;
     .genreItems {
         justify-content: center;
     }
+    
 }
 @media(max-width:500px) {
     .trailer {
         transform: rotate(-90deg);
+    }
+    .imageContainer {
+        margin: 5px;
     }
 }
  
