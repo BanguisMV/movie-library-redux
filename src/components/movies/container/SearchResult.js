@@ -2,8 +2,8 @@ import React,{ useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import queryString from 'query-string';
-import { getMoviesBySearch } from '../../redux/actions/getManyMovies';
-import styles from './movies.module.css';
+import { getMoviesBySearch } from '../../../redux/actions/getManyMovies';
+import styles from '../movies.module.css';
 import Cards from './Card';
 
 

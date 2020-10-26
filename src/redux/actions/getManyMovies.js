@@ -40,7 +40,7 @@ export const getMoviesByDiscover = (discover, page) => {
         const signal = newController.signal;
 
      dispatch(LOADING(newController))
-        fetch(`https://api.themoviedb.org/3/movie/${discover}?api_key=${API_KEY}&page=${page}&include_adult=true`, {signal})
+        fetch(`https://api.themoviedb.org/3/movie/${discover}?api_key=${API_KEY}&page=${page ? page : 1}&include_adult=true`, {signal})
         .then(res => res.json())
         .then(res => dispatch(SUCCESS(res.results)))
         .catch(err =>  dispatch(FAILED(err.toString())))
@@ -54,7 +54,7 @@ export const getMoviesBySearch = (keyword,page) => {
      const newController = new AbortController();
      const signal = newController.signal;
      dispatch(LOADING(newController))
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${keyword}&page=${page}`, {signal})
+        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${keyword}&page=${page ? page : 1}`, {signal})
         .then(res => res.json())
         .then(res => dispatch(SUCCESS(res.results)))
         .catch(err =>  dispatch(FAILED(err)))
@@ -68,7 +68,7 @@ export const getMoviesByGenre = (genre,page) => {
     const newController = new AbortController();
     const signal = newController.signal;
     dispatch(LOADING(newController))
-       fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&include_adult=true&with_genres=${genre}&sort_by=${sort}.desc&page=${page}`, {signal})
+       fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&include_adult=true&with_genres=${genre}&sort_by=${sort}.desc&page=${page ? page : 1}`, {signal})
        .then(res => res.json())
        .then(res => dispatch(SUCCESS(res.results)))
        .catch(err =>  dispatch(FAILED(err)))

@@ -1,9 +1,9 @@
 import React,{ useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMoviesByDiscover } from '../../redux/actions/getManyMovies';
-import { Discovers } from '../sidebar/Categories';
-import styles from './movies.module.css';
+import { getMoviesByDiscover } from '../../../redux/actions/getManyMovies';
+import { Discovers } from '../../sidebar/Categories';
+import styles from '../movies.module.css';
 import Cards from './Card';
 import queryString from 'query-string';
 

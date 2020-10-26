@@ -1,10 +1,10 @@
 import React,{ useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch  } from 'react-redux';
-import { getMoviesByGenre } from '../../redux/actions/getManyMovies';
+import { getMoviesByGenre } from '../../../redux/actions/getManyMovies';
 import Cards from './Card';
-import styles from './movies.module.css';
-import { Categories } from '../sidebar/Categories';
+import styles from '../movies.module.css';
+import { Categories } from '../../sidebar/Categories';
 import queryString from 'query-string';
 
 

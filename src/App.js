@@ -1,15 +1,20 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
-import SideNav from './components/sidebar/AppBar';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import Movie from './components/movie/Movie';
-import Genre from './components/movies/Genre';
-import Discover from './components/movies/Discover';
-import SearchResult from './components/movies/SearchResult';
-import PageNotFound from './components/movies/NotFound';
+
+import SideNav from './components/sidebar/AppBar';
+import Movie from './components/movie/container/Movie';
+import Genre from './components/movies/container/Genre';
+import Discover from './components/movies/container/Discover';
+
+
+
+import SearchResult from './components/movies/container/SearchResult';
+import PageNotFound from './components/movies/dumb/NotFound';
 import { Discovers, Categories } from './components/sidebar/Categories';
 import Scroll from './components/hoc/Scroll';
+
 const rootStyle = makeStyles((theme) => ({
   root: {
     display: 'flex',

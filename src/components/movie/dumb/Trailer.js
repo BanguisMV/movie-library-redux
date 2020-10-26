@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import styles from './movie.module.css';
+import styles from '../movie.module.css';
 import ReactPlayer from 'react-player'
 import Backdrop from '@material-ui/core/Backdrop';
 

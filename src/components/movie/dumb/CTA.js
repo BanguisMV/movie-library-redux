@@ -1,10 +1,8 @@
 import React from 'react'
-import styles from './movie.module.css';
+import styles from '../movie.module.css';
 import Button from '@material-ui/core/Button';
 import PlayArrowOutlinedIcon from '@material-ui/icons/PlayArrowOutlined';
 import LanguageOutlinedIcon from '@material-ui/icons/LanguageOutlined';
-
-
 const Poster = ({movie ,handleToggle}) => {
     return (
         <div className={styles.CTA}>

@@ -1,5 +1,5 @@
 import React,{Fragment} from 'react'
-import styles from './movie.module.css';
+import styles from '../movie.module.css';
 import Typography from '@material-ui/core/Typography';
 
 function addCommas(num) {
@@ -25,7 +25,7 @@ const Details = ({movie}) => {
                  <h3>Plot</h3>
                 <Typography variant="subtitle2" gutterBottom> {movie.overview} </Typography>
                 <Typography variant="body2"  gutterBottom style={{margin:'1rem 0', textAlign:'center'}}>
-                    Runtime: {movie.runtime}min / Revenue: ${addCommas(movie.revenue)} / Language: {movie && movie.genres && movie.spoken_languages[0].name} 
+                    Runtime: {movie.runtime !== 0 && movie.runtime ? movie.runtime : 0}min / Revenue: ${addCommas(movie.revenue)} / Language: {movie && movie.spoken_languages && movie.spoken_languages.length !== 0 ? movie.spoken_languages[0].name : 'Unidentified' } 
                 </Typography>
             </div>
         </Fragment>

@@ -1,4 +1,4 @@
-import { MOVIE_FETCHING, MOVIE_SUCCESS, MOVIE_FAILED, MOVIES_SIMILAR } from './types';
+import { MOVIE_FETCHING, MOVIE_SUCCESS, MOVIE_FAILED, MOVIES_SIMILAR,MOVIE_CAST,MOVIE_IMAGES } from './types';
 
 const LOADING = () => {
     return {
@@ -27,6 +27,24 @@ const SUCCESS_SIMILAR = (data) => {
         }
     }
 }
+const SUCCESS_CAST = (data) => {
+    return {
+        type: MOVIE_CAST,
+        payload: {
+            loading: false,
+            cast: data,
+        }
+    }
+}
+const SUCCESS_IMAGES = (data) => {
+    return {
+        type: MOVIE_IMAGES,
+        payload: {
+            loading: false,
+            images: data,
+        }
+    }
+}
 const FAILED = (error) => {
     return {
         type: MOVIE_FAILED,
@@ -52,10 +70,39 @@ export const getSimilarMovie = (MOVIE_ID, page) => {
     return dispatch => {
         const API_KEY = process.env.REACT_APP_API_KEY;
         dispatch(LOADING())
-        fetch(`https://api.themoviedb.org/3/movie/${MOVIE_ID}similar?api_key=${API_KEY}&page=${page}`)
+
+        //https://api.themoviedb.org/3/movie/724989/api_key=e366d974f73ae203397850eadc7bce1f
+        fetch(`https://api.themoviedb.org/3/movie/${MOVIE_ID}/similar?api_key=${API_KEY}&page=${page ? page : 1}`)
         .then(res => res.json())
         .then(res => dispatch(SUCCESS_SIMILAR(res)))
         .catch(err =>  dispatch(FAILED(err)))
     }
 }
+
+export const getCast = (MOVIE_ID, page) => {
+    return dispatch => {
+        const API_KEY = process.env.REACT_APP_API_KEY;
+        dispatch(LOADING())
+
+        //https://api.themoviedb.org/3/movie/724989/api_key=e366d974f73ae203397850eadc7bce1f
+        fetch(`https://api.themoviedb.org/3/movie/${MOVIE_ID}/credits?api_key=${API_KEY}&page=${page ? page : 1}`)
+        .then(res => res.json())
+        .then(res => dispatch(SUCCESS_CAST(res)))
+        .catch(err =>  dispatch(FAILED(err)))
+    }
+}
+
+export const getImages = (MOVIE_ID) => {
+    return dispatch => {
+        const API_KEY = process.env.REACT_APP_API_KEY;
+        dispatch(LOADING())
+
+        //https://api.themoviedb.org/3/movie/724989/api_key=e366d974f73ae203397850eadc7bce1f
+        fetch(`https://api.themoviedb.org/3/movie/${MOVIE_ID}/images?api_key=${API_KEY}`)
+        .then(res => res.json())
+        .then(res => dispatch(SUCCESS_IMAGES(res)))
+        .catch(err =>  dispatch(FAILED(err)))
+    }
+}
+
 

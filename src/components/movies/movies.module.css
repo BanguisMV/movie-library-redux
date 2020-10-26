@@ -19,6 +19,19 @@
 .grid {
     text-align: center;
 }
+
+.skeletonLoading  {
+    position: absolute !important;
+    height: 100% !important;
+    width: 100% !important;
+    top: 0 !important;
+    opacity: 1 !important;
+}
+
+.skeletonLoaded {
+    opacity: 0 !important;
+   display: none !important;
+}
 .notFound img {
     height: 29.5rem !important;
 }
@@ -34,7 +47,10 @@
     margin-bottom:1rem;
     height: auto;
 }
-
+.cardLoading {
+    position: relative !important;
+    height: 23rem;
+}
 
 .card:hover {
     cursor: pointer;

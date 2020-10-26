@@ -1,9 +1,12 @@
-import { MOVIE_FETCHING, MOVIE_SUCCESS, MOVIE_FAILED, MOVIES_SIMILAR } from '../actions/types';
+import { MOVIE_FETCHING, MOVIE_SUCCESS, MOVIE_FAILED, MOVIES_SIMILAR,MOVIE_CAST, MOVIE_IMAGES } from '../actions/types';
 
 const INITIAL_STATE = {
     movie: {},
     loading: false,
     error: '',
+    similarMovies:[],
+    cast:[],
+    images: []
  };
 
 
@@ -31,6 +34,18 @@ const INITIAL_STATE = {
                  ...state, 
                 loading: action.payload.loading,
                 similarMovies: action.payload.similarMovies,
+            };
+            case MOVIE_CAST:
+               return {
+                 ...state, 
+                loading: action.payload.loading,
+                cast: action.payload.cast,
+            };
+            case MOVIE_IMAGES:
+               return {
+                 ...state, 
+                loading: action.payload.loading,
+                images: action.payload.images,
             };
          default: return state;
     }
