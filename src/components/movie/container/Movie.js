@@ -2,7 +2,6 @@ import React, { useEffect, useState, Fragment } from 'react'
 import Helmet from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMovie, getSimilarMovie, getCast, getImages } from '../../../redux/actions/getOneMovie';
-import { withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import styles from '../movie.module.css';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -74,5 +73,5 @@ const Movie = (props) => {
     )
 }
 
-export default withRouter(Movie)
+export default Movie
 

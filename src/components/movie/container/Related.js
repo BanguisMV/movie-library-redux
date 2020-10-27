@@ -15,7 +15,6 @@ const Related = ({cast, images}) => {
   const small = useMediaQuery('(max-width:300px)');
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => setValue(newValue);
-
     return (
       <Grid item xs={12}  md={4} >
           <Paper className={styles.related}>
@@ -35,7 +34,7 @@ const Related = ({cast, images}) => {
                     <div className={styles.cast}>
                             {cast && cast.cast && cast.cast.length !== 0 ? 
                                 cast.cast.map(x => (
-                            <Avatar alt={x.character} key={x.cast_id} 
+                            <Avatar alt={x.character} key={x.id} 
                             onClick={() => history.push(`/person/${x.id}`)} 
                             className={styles.castAvatar} 
                             src={`https://image.tmdb.org/t/p/w92/${x.profile_path}`} />
