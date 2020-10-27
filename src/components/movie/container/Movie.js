@@ -43,11 +43,11 @@ const Movie = (props) => {
         <Grid container spacing={3} className={loading ? styles.loading : styles.movie}>
                 <Helmet>
                     <title>{movie.original_title}</title>
-                    <meta name={movie.overview} content={movie.overview} />
+                    <meta name={movie.original_title} content={movie.overview} />
                 </Helmet>
-        {loading ?  <div className='Spinner'><CircularProgress/></div> :
+        { loading ?  <div className='Spinner'><CircularProgress/></div> :
             <>
-                <Grid item xs={12}  md={8} className={styles.overviewContainer }>
+                <Grid item xs={12}  md={8} className={ styles.overviewContainer }>
                     <Poster movie={movie} images={images} />
                     <Details movie={movie} />
                     <CTA movie={movie} handleToggle={handleToggle}/>
@@ -58,14 +58,16 @@ const Movie = (props) => {
         }
         </Grid>
 
-        {movie && similarMovies && similarMovies.results && similarMovies.results.length !== 0 ?  <Cards 
+        {movie && similarMovies && similarMovies.results && similarMovies.results.length !== 0 ?  
+        <Cards 
             isLoading={loading}
             isRecommended
             didImageLoaded={didImageLoaded}
             setImageLoaded={setImageLoaded}
             data={similarMovies.results} 
-            title='Recommendations' 
-        /> : similarMovies && similarMovies.results && similarMovies.results.length === 0 && <Typography variant="h6" > No Recommendation </Typography>
+            title='Recommendations' /> 
+            : 
+            !similarMovies && !similarMovies.results && similarMovies.results.length === 0 && <Typography variant="h6" > No Recommendation </Typography>
         }
        
 </Fragment>

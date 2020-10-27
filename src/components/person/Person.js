@@ -23,29 +23,34 @@ const Person = () => {
         })
     },[id,page])
 console.log(person);
+
+// Multiple checkings of loading below hahahha
     return (
         <div>
             <Helmet>
                     <title>{person && person[0] && person[0].name ? person[0].name : '...'}</title>
                     <meta name="description" content={person && person[0] && person[0].biography} />
             </Helmet>
-            <div>
-                info
-            </div>
+
+        
+    {!loading && person && person[1] && person[0] && person[0].name && person[1].results.length !== 0 ?
+            <>
+            <div>info</div>
             <Divider />
-                {loading && !person && !person[1] ?
-                    <Cards 
-                        isRecommended
-                        isLoading={loading}
-                        title='Movies involved' 
-                        data={person && person[1] && person[1].results}
-                        didImageLoaded={didImageLoaded}
-                        setImageLoaded={setImageLoaded}
-                    /> :  <div className='Spinner'><CircularProgress/></div> 
-                }
-           
+            <Cards 
+                   isRecommended
+                   isLoading={loading}
+                   title='Movies involved' 
+                   data={person && person[1] && person[1].results}
+                   didImageLoaded={didImageLoaded}
+                   setImageLoaded={setImageLoaded}
+               />
+             </> :  <div className='Spinner'><CircularProgress/></div> 
+        } 
+
         </div>
     )
 }
 
 export default Person
+// : 
