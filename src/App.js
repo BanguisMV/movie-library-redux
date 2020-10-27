@@ -14,7 +14,6 @@ import SearchResult from './components/movies/container/SearchResult';
 import PageNotFound from './components/movies/dumb/NotFound';
 import { Discovers, Categories } from './components/sidebar/Categories';
 import Scroll from './components/hoc/Scroll';
-
 const rootStyle = makeStyles((theme) => ({
   root: {
     display: 'flex',

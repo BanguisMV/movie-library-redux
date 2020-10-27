@@ -11,7 +11,6 @@ import  { useLocation, useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 
 
-
 const Related = ({movie, cast, images}) => {
   const location = useLocation()
   const history = useHistory()
@@ -35,7 +34,7 @@ const Related = ({movie, cast, images}) => {
               >
                   <Tab label="Cast"  {...a11yProps(0)}/>
                   <Tab label="Crew" {...a11yProps(1)}/>
-                  <Tab label="Gallery" {...a11yProps(2)}/>
+                  <Tab label="Posters" {...a11yProps(2)}/>
 
               </Tabs>
             <TabPanel value={value} index={0}>
@@ -69,7 +68,7 @@ const Related = ({movie, cast, images}) => {
                   <img src={`https://image.tmdb.org/t/p/w92${img.file_path}`} alt="" />
                 )) : null  }
             </div > 
-                    
+            
             </TabPanel>
       </Paper>
     </Grid>

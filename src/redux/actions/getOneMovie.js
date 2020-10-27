@@ -1,4 +1,11 @@
-import { MOVIE_FETCHING, MOVIE_SUCCESS, MOVIE_FAILED, MOVIES_SIMILAR,MOVIE_CAST,MOVIE_IMAGES } from './types';
+import { 
+    MOVIE_FETCHING, 
+    MOVIE_SUCCESS, 
+    MOVIE_FAILED, 
+    MOVIES_SIMILAR,
+    MOVIE_CAST,
+    MOVIE_IMAGES,
+ } from './types';
 
 const LOADING = () => {
     return {
@@ -8,6 +15,7 @@ const LOADING = () => {
         }
     }
 }
+
 
 const SUCCESS = (data) => {
     return {

@@ -7,6 +7,7 @@ const INITIAL_STATE = {
     similarMovies:[],
     cast:[],
     images: [],
+    all:[]
  };
 
 
