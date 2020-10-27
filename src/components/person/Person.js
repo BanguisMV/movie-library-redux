@@ -25,7 +25,7 @@ const Person = () => {
     return (
         <div>
             <Helmet>
-                    <title>{person && person[0] && person[0].name}</title>
+                    <title>{person && person[0] && person[0].name ? person[0].name : '...'}</title>
                     <meta name="description" content={person && person[0] && person[0].biography} />
             </Helmet>
             <div>
