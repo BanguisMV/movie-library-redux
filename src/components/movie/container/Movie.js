@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import styles from '../movie.module.css';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Related from '../dumb/Related';
+import Related from './Related';
 import Trailer from '../dumb/Trailer';
 import Poster from '../dumb/Poster';
 import Details from '../dumb/Details';
@@ -66,7 +66,7 @@ const Movie = (props) => {
             setImageLoaded={setImageLoaded}
             data={similarMovies.results} 
             title='Recommendations' 
-        /> : movie && similarMovies && similarMovies.results && similarMovies.results.length === 0 ? <Typography variant="h6" > No Recommendation </Typography> : <Typography variant="h6" > Loading.. </Typography>
+        /> : movie && similarMovies && similarMovies.results && similarMovies.results.length === 0 ? <Typography variant="h6" > No Recommendation </Typography> : <CircularProgress className={styles.spinner}/>
         }
        
 </Fragment>

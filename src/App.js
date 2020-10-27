@@ -7,9 +7,6 @@ import SideNav from './components/sidebar/AppBar';
 import Movie from './components/movie/container/Movie';
 import Genre from './components/movies/container/Genre';
 import Discover from './components/movies/container/Discover';
-
-
-
 import SearchResult from './components/movies/container/SearchResult';
 import PageNotFound from './components/movies/dumb/NotFound';
 import { Discovers, Categories } from './components/sidebar/Categories';

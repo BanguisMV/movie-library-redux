@@ -1,26 +1,21 @@
-import React, {useState} from 'react'
+import React, { useEffect, useState} from 'react'
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import styles from '../movie.module.css';
 import Grid from '@material-ui/core/Grid';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import  { useLocation, useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 
-
 const Related = ({movie, cast, images}) => {
-  const location = useLocation()
   const history = useHistory()
-
-    const large = useMediaQuery('(min-width:959px)');
-    const small = useMediaQuery('(max-width:300px)');
-    const [value, setValue] = useState(0);
-
+  const large = useMediaQuery('(min-width:959px)');
+  const small = useMediaQuery('(max-width:300px)');
+  const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => setValue(newValue);
-console.log(cast)
+
     return (
       <Grid item xs={12} md={4}>
           <Paper className={styles.related}>
@@ -37,7 +32,7 @@ console.log(cast)
                   <Tab label="Posters" {...a11yProps(2)}/>
               </Tabs>
             <TabPanel value={value} index={0}>
-                          <div className={styles.cast}>
+                    <div className={styles.cast}>
                             {cast && cast.cast && cast.cast.length !== 0 ? 
                                 cast.cast.map(x => (
                             <Avatar alt={x.character} key={x.cast_id} 
@@ -45,7 +40,7 @@ console.log(cast)
                             className={styles.castAvatar} 
                             src={`https://image.tmdb.org/t/p/w92/${x.profile_path}`} />
                           )) : null }
-                        </div >
+                  </div >
             </TabPanel>
             <TabPanel value={value} index={1}>
             <div className={styles.cast}>
@@ -70,10 +65,8 @@ console.log(cast)
 
     )
 }
-//https://image.tmdb.org/t/p/w92/69ggDmbcUWHuRXeg3LAgjroOPD3.jpg
+
 export default Related
-
-
 
 
 // Some material UI bloated structures 
@@ -87,12 +80,9 @@ function a11yProps(index) {
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
-    <div
-      role="tabpanel"
-      style={{flexGrow:'1'}}
-      hidden={value !== index}
-      id={`scrollable-auto-tabpanel-${index}`}
-      aria-labelledby={`scrollable-auto-tab-${index}`}
+    <div role="tabpanel" style={{flexGrow:'1'}} hidden={value !== index} 
+    id={`scrollable-auto-tabpanel-${index}`} 
+    aria-labelledby={`scrollable-auto-tab-${index}`}
       {...other}
     >
       {value === index && (

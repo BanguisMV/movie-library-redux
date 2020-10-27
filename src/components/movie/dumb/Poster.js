@@ -10,7 +10,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 
 const Poster = ({movie ,images}) => {
     const matches = useMediaQuery('(min-width:600px)');
-
+console.log(images)
     return (
         <Fragment>
             <Carousel showArrows={true} autoPlay={true} 
@@ -23,7 +23,7 @@ const Poster = ({movie ,images}) => {
             {/* <picture>
                 <source media="(max-width:500px)" srcSet={`https://image.tmdb.org/t/p/w780/${movie.poster_path && movie.poster_path !== null ? movie.poster_path : null }`} />
                 <source media="(min-width:501px)" srcSet={`https://image.tmdb.org/t/p/w780/${movie.backdrop_path && movie.backdrop_path !== null ? movie.backdrop_path : null }`} />
-                <img src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}} alt={movie.original_title} className={styles.image} />
+                <img src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`} alt={movie.original_title} className={styles.image} />
             </picture>  */}
 
             <div className={styles.info}>

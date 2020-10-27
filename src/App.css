@@ -16,10 +16,6 @@ nav a, li, h6 {
   *::-webkit-scrollbar {
     width: 4px;
   }
-  .content {
-    padding:1rem !important;
-  }
-  
 }
 
 *::-webkit-scrollbar-track {
