@@ -15,7 +15,7 @@ const Person = () => {
     useEffect(() => {
         Promise.all([
             fetch(`https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_API_KEY}`).then(resp => resp.json()),
-            fetch(`https://api.themoviedb.org/3/discover/movie/?api_key=${process.env.REACT_APP_API_KEY}&with_cast=${id}&sort_by=popularity.desc&page=${page}`).then(resp => resp.json())
+            fetch(`https://api.themoviedb.org/3/discover/movie/?api_key=${process.env.REACT_APP_API_KEY}&with_cast=${id}&sort_by=popularity.desc&page=${page ? page : 1}`).then(resp => resp.json())
           ]).then(res => {
             setLoading(false)  
             setPerson(res)
