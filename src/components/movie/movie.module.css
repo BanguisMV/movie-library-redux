@@ -1,8 +1,7 @@
 .movie {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
-    max-width: 1400px;
     width: 100%;
     margin: 0 auto;
     flex-wrap: wrap;
@@ -33,21 +32,19 @@
     flex-wrap: wrap;
 }
 .overview h6 {
-text-indent: 1rem;
+    text-indent: 1rem;
 }
-.imageContainer {
-
+.overviewContainer {
     margin: 1rem;
     width: 60%;
-    object-fit: cover;
 }
 .CTA {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-around;
 }
-.CTA > *{
+.CTA > * {
     margin: 1rem !important;
 }
 
@@ -60,16 +57,7 @@ text-indent: 1rem;
     justify-content: center;
     align-self: center;
 }
-.related {
-    flex-grow: 1;
-}
-.thumbs-wrapper {
-    margin: 10px !important;
-}
-.image {
-    width: 100%;
-    height: 100%;
-}
+
 .images {
     display: flex;
     justify-content: center;
@@ -82,14 +70,15 @@ text-indent: 1rem;
 }
 .cast {
     display: flex;
-    align-self: flex-start;
+    justify-content: center;
+    align-self: center;
     flex-wrap: wrap;
 }
 .castAvatar {
    margin: 5px !important;
    transition: all .3s ease-in-out;
    box-shadow: 0px 10px 5px -7px #000000;
-  background-color: #382864 !important;
+   background-color: #382864 !important;
 }
 .castAvatar:hover {
     transform: scale(1.1);
@@ -97,7 +86,7 @@ text-indent: 1rem;
     box-shadow: 0px 10px 13px -7px #000000
  }
 @media(max-width: 956px) {
-    .imageContainer {
+    .overviewContainer {
         text-align: center !important;
         width: 100%;
     }
@@ -108,12 +97,16 @@ text-indent: 1rem;
         height: 50vh;
         width: 80vw;
     }
+
+    .movie {
+      flex-direction: row !important;
+    }
 }
 @media(max-width:500px) {
     .trailer {
         transform: rotate(-90deg);
     }
-    .imageContainer {
+    .overviewContainer {
         margin: 5px;
     }
 }

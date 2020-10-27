@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react'
+import React, {  useState} from 'react'
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -6,10 +6,10 @@ import styles from '../movie.module.css';
 import Grid from '@material-ui/core/Grid';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Box from '@material-ui/core/Box';
-import  { useLocation, useHistory } from 'react-router-dom';
+import  { useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 
-const Related = ({movie, cast, images}) => {
+const Related = ({cast, images}) => {
   const history = useHistory()
   const large = useMediaQuery('(min-width:959px)');
   const small = useMediaQuery('(max-width:300px)');
@@ -17,7 +17,7 @@ const Related = ({movie, cast, images}) => {
   const handleChange = (event, newValue) => setValue(newValue);
 
     return (
-      <Grid item xs={12} md={4}>
+      <Grid item xs={12}  md={4} >
           <Paper className={styles.related}>
               <Tabs
                   value={value}
@@ -36,7 +36,7 @@ const Related = ({movie, cast, images}) => {
                             {cast && cast.cast && cast.cast.length !== 0 ? 
                                 cast.cast.map(x => (
                             <Avatar alt={x.character} key={x.cast_id} 
-                            onClick={() => history.push(`/people/${x.id}`)} 
+                            onClick={() => history.push(`/person/${x.id}`)} 
                             className={styles.castAvatar} 
                             src={`https://image.tmdb.org/t/p/w92/${x.profile_path}`} />
                           )) : null }

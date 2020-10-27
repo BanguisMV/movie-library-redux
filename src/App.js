@@ -11,6 +11,7 @@ import SearchResult from './components/movies/container/SearchResult';
 import PageNotFound from './components/movies/dumb/NotFound';
 import { Discovers, Categories } from './components/sidebar/Categories';
 import Scroll from './components/hoc/Scroll';
+import Person from './components/person/Person';
 const rootStyle = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -18,9 +19,8 @@ const rootStyle = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
 }));
 
-const ResponsiveDrawer = (props) => {
+const App = (props) => {
 const classes = rootStyle();
-
   return (
     <div className={classes.root}>
       <Scroll>
@@ -34,6 +34,7 @@ const classes = rootStyle();
               {Categories.map(category => (<Route exact path={`/${category.name.toLowerCase()}`} key={category.id} component={Genre} />))}
               <Route exact path='/results' component={SearchResult} />
               <Route exact path='/movie/:id' component={Movie} />
+              <Route exact path='/person/:id' component={Person} />
               <Route path='*' component={PageNotFound} />
             </Switch>
         </main>
@@ -43,4 +44,4 @@ const classes = rootStyle();
 }
 
 
-export default ResponsiveDrawer;
+export default App;

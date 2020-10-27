@@ -48,7 +48,7 @@ const Movie = (props) => {
                 </Helmet>
         {loading ? <CircularProgress /> :
             <>
-                <Grid item xs={12} md={8} className={styles.imageContainer}>
+                <Grid item xs={12}  md={8} className={styles.overviewContainer }>
                     <Poster movie={movie} images={images} />
                     <Details movie={movie} />
                     <CTA movie={movie} handleToggle={handleToggle}/>

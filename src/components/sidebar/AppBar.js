@@ -14,7 +14,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
-
 import { SwipeableDrawer } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
