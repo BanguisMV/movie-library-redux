@@ -68,11 +68,11 @@ const Cards = ({ data, setImageLoaded, didImageLoaded, title, isLoading, isGenre
               {!isRecommended &&  <title>{toTitleCase(title)}</title>}
             </Helmet>
             <div className={classes.selection}>
-                {isLoading ? <CircularProgress className={styles.spinner}/> : <h1 className={styles.page}>{toTitleCase(title)}</h1>}
-                {isGenre ? SortBy : null}
+                {!isLoading && <h1 className={styles.page}>{toTitleCase(title)}</h1>}
+                {isGenre && !isLoading ? SortBy : null}
             </div>
             
-            <Grid container spacing={6}>
+            {isLoading ? <div className='Spinner'><CircularProgress/></div> :  <Grid container spacing={6}>
                 {data.map(movie => (    
                         <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id} className={styles.grid}>
                                 <Card className={didImageLoaded ? styles.card : styles.cardLoading }>
@@ -97,12 +97,11 @@ const Cards = ({ data, setImageLoaded, didImageLoaded, title, isLoading, isGenre
                                     value={(movie.vote_average / 2)} 
                                     precision={0.5} 
                                     readOnly className={styles.rating} />
-
                             </Grid>
                             
                     ))}
                 { isLoading ? null : <Pagination /> }
-                </Grid>
+                </Grid> }
 
 
         </Fragment>

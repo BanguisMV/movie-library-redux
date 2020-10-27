@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import Cards from '../movies/container/Card'
 import Divider from '@material-ui/core/Divider';
 import queryString from 'query-string';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Person = () => {
     const location = useLocation()
@@ -32,16 +33,16 @@ console.log(person);
                 info
             </div>
             <Divider />
-            {!loading && person && person[1] ?
-                <Cards 
-                    isRecommended
-                    isLoading={loading}
-                    title='Movies involved' 
-                    data={person && person[1] && person[1].results}
-                    didImageLoaded={didImageLoaded}
-                    setImageLoaded={setImageLoaded}
-                /> :  <h1>Loading</h1> 
-            }
+                {loading && !person && !person[1] ?
+                    <Cards 
+                        isRecommended
+                        isLoading={loading}
+                        title='Movies involved' 
+                        data={person && person[1] && person[1].results}
+                        didImageLoaded={didImageLoaded}
+                        setImageLoaded={setImageLoaded}
+                    /> :  <div className='Spinner'><CircularProgress/></div> 
+                }
            
         </div>
     )

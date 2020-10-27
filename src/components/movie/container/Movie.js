@@ -45,7 +45,7 @@ const Movie = (props) => {
                     <title>{movie.original_title}</title>
                     <meta name={movie.overview} content={movie.overview} />
                 </Helmet>
-        {loading ? <CircularProgress /> :
+        {loading ?  <div className='Spinner'><CircularProgress/></div> :
             <>
                 <Grid item xs={12}  md={8} className={styles.overviewContainer }>
                     <Poster movie={movie} images={images} />
@@ -65,7 +65,7 @@ const Movie = (props) => {
             setImageLoaded={setImageLoaded}
             data={similarMovies.results} 
             title='Recommendations' 
-        /> : movie && similarMovies && similarMovies.results && similarMovies.results.length === 0 ? <Typography variant="h6" > No Recommendation </Typography> : <CircularProgress className={styles.spinner}/>
+        /> : movie && similarMovies && similarMovies.results && similarMovies.results.length === 0 ? <Typography variant="h6" > No Recommendation </Typography> : <div className='Spinner'><CircularProgress/></div>
         }
        
 </Fragment>

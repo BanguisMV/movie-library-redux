@@ -16,7 +16,10 @@ nav a, li, h6 {
   *::-webkit-scrollbar {
     width: 4px;
   }
- 
+  .Spinner {
+    left: 50% !important;
+  }
+  
 }
 
 *::-webkit-scrollbar-track {
@@ -40,4 +43,10 @@ background-color: #441f8a;
   width: 100%;
   overflow: hidden;
 }
-
+.Spinner {
+  position: fixed;
+  top: 50%;
+  left: 55%;
+  z-index: 33;
+  transform: translate(-50%, -50%);
+}
