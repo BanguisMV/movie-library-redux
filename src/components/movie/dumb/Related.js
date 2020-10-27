@@ -20,7 +20,7 @@ const Related = ({movie, cast, images}) => {
     const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => setValue(newValue);
-
+console.log(cast)
     return (
       <Grid item xs={12} md={4}>
           <Paper className={styles.related}>
@@ -35,40 +35,35 @@ const Related = ({movie, cast, images}) => {
                   <Tab label="Cast"  {...a11yProps(0)}/>
                   <Tab label="Crew" {...a11yProps(1)}/>
                   <Tab label="Posters" {...a11yProps(2)}/>
-
               </Tabs>
             <TabPanel value={value} index={0}>
                           <div className={styles.cast}>
                             {cast && cast.cast && cast.cast.length !== 0 ? 
                                 cast.cast.map(x => (
-                            <Avatar alt={x.character} key={x._id} 
+                            <Avatar alt={x.character} key={x.cast_id} 
                             onClick={() => history.push(`/people/${x.id}`)} 
                             className={styles.castAvatar} 
                             src={`https://image.tmdb.org/t/p/w92/${x.profile_path}`} />
                           )) : null }
                         </div >
-                    
-
             </TabPanel>
             <TabPanel value={value} index={1}>
             <div className={styles.cast}>
-                            {cast && cast.crew && cast.crew.length !== 0 ? 
-                                cast.crew.slice(0,50).map(x => (
-                            <Avatar alt={x.character} key={x._id} 
-                            onClick={() => history.push(`/people/${x.id}`)} 
-                            className={styles.castAvatar} 
-                            src={`https://image.tmdb.org/t/p/w92/${x.profile_path}`} />
-                          )) : null }
-                        </div >
+                        {cast && cast.crew && cast.crew.length !== 0 ? cast.crew.slice(0,50).map(x => (
+                            <Avatar alt={x.character} key={x.credit_id} 
+                                  onClick={() => history.push(`/people/${x.id}`)} 
+                                  className={styles.castAvatar} 
+                                  src={`https://image.tmdb.org/t/p/w92/${x.profile_path}`} />
+                                )) : cast && cast.crew && cast.crew.length !== 0 ? <h1>Unable to find casts</h1> : <h1>Loading..</h1>}
+                 </div >
                     
             </TabPanel>
             <TabPanel value={value} index={2}>
-            <div className={styles.images}>
-                {images && images.posters && images.posters.length !==0 ? images.posters.slice(0,9).map(img => (
-                  <img src={`https://image.tmdb.org/t/p/w92${img.file_path}`} alt="" />
-                )) : null  }
-            </div > 
-            
+              <div className={styles.images}>
+                  {images && images.posters && images.posters.length !==0 ? images.posters.slice(0,9).map(img => (
+                    <img src={`https://image.tmdb.org/t/p/w92${img.file_path}`} alt={img.file_path} key={img.file_path} />
+                  )) : null  }
+              </div > 
             </TabPanel>
       </Paper>
     </Grid>
@@ -102,7 +97,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          {children}
         </Box>
       )}
     </div>

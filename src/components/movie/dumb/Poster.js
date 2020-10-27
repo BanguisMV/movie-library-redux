@@ -15,17 +15,15 @@ const Poster = ({movie ,images}) => {
         <Fragment>
             <Carousel showArrows={true} autoPlay={true} 
                 swiping={true} className="slider animated" >
-                {images && images.backdrops && images.backdrops.length !== 0 ? images.backdrops.slice(0,8).map(img => (
-                  <div>
-                    <img src={`https://image.tmdb.org/t/p/w780${img.file_path}`} alt="" />
-                  </div >   
-                )) : images && images.backdrops && images.backdrops.length !== 0 ? <h1>No image doung</h1> : <h1>Loading</h1> }
+                {images && images.backdrops && images.backdrops.length !== 0 ? images.backdrops.slice(0,9).map(img => (
+                    <img src={`https://image.tmdb.org/t/p/w780${img.file_path}`} alt={img.file_path} key={img.file_path} />
+                )) : images && images.backdrops && images.backdrops.length === 0 ? <h1>No image </h1> : <h1>Loading</h1> }
             </Carousel>
 
             {/* <picture>
                 <source media="(max-width:500px)" srcSet={`https://image.tmdb.org/t/p/w780/${movie.poster_path && movie.poster_path !== null ? movie.poster_path : null }`} />
                 <source media="(min-width:501px)" srcSet={`https://image.tmdb.org/t/p/w780/${movie.backdrop_path && movie.backdrop_path !== null ? movie.backdrop_path : null }`} />
-                <img src="/" alt={movie.original_title} className={styles.image} />
+                <img src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}} alt={movie.original_title} className={styles.image} />
             </picture>  */}
 
             <div className={styles.info}>

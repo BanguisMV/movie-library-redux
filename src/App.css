@@ -10,13 +10,16 @@ nav a, li, h6 {
   }
  .sidebar a {
   color: #969faf !important;
-
  }
 }
 @media(max-width:959px) {
   *::-webkit-scrollbar {
     width: 4px;
   }
+  .content {
+    padding:1rem !important;
+  }
+  
 }
 
 *::-webkit-scrollbar-track {
