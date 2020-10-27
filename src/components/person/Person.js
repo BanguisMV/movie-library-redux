@@ -21,7 +21,7 @@ const Person = () => {
             setPerson(res)
         })
     },[id,page])
-
+console.log(person);
     return (
         <div>
             <Helmet>
