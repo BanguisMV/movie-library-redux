@@ -31,20 +31,22 @@ console.log(person);
                     <title>{person && person[0] && person[0].name ? person[0].name : '...'}</title>
                     <meta name="description" content={person && person[0] && person[0].biography} />
             </Helmet>
-
-        
-    {!loading && person && person[1] && person[0] && person[0].name && person[1].results.length !== 0 ?
+    {!loading ?
             <>
-            <div>info</div>
+            {person && person[0] ? <div>info</div> : <h1>Loading</h1>}
+ 
             <Divider />
-            <Cards 
-                   isRecommended
-                   isLoading={loading}
-                   title='Movies involved' 
-                   data={person && person[1] && person[1].results}
-                   didImageLoaded={didImageLoaded}
-                   setImageLoaded={setImageLoaded}
-               />
+            {person && person[1] && person[1].results ? 
+              <Cards 
+              isRecommended
+              isLoading={loading}
+              title='Also played in' 
+              data={person && person[1] && person[1].results}
+              didImageLoaded={didImageLoaded}
+              setImageLoaded={setImageLoaded}
+          /> : <CircularProgress/>
+        } 
+          
              </> :  <div className='Spinner'><CircularProgress/></div> 
         } 
 
