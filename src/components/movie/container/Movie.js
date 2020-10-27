@@ -65,7 +65,7 @@ const Movie = (props) => {
             setImageLoaded={setImageLoaded}
             data={similarMovies.results} 
             title='Recommendations' 
-        /> : movie && similarMovies && similarMovies.results && similarMovies.results.length === 0 ? <Typography variant="h6" > No Recommendation </Typography> : <div className='Spinner'><CircularProgress/></div>
+        /> : similarMovies && similarMovies.results && similarMovies.results.length === 0 && <Typography variant="h6" > No Recommendation </Typography>
         }
        
 </Fragment>
