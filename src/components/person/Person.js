@@ -37,7 +37,7 @@ const Person = () => {
                     isRecommended
                     isLoading={loading}
                     title='Movies involved' 
-                    data={person[1].results}
+                    data={person && person[1] && person[1].results}
                     didImageLoaded={didImageLoaded}
                     setImageLoaded={setImageLoaded}
                 /> :  <h1>Loading</h1> 
