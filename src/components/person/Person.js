@@ -7,7 +7,6 @@ import queryString from 'query-string';
 
 const Person = () => {
     const location = useLocation()
-
     const [person, setPerson] = useState({})
     const [loading, setLoading] = useState(true)
     const [ didImageLoaded, setImageLoaded ] = useState(false)
