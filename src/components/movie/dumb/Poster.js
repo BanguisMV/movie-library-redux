@@ -5,6 +5,7 @@ import Rating from '@material-ui/lab/Rating';
 import Divider from '@material-ui/core/Divider';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Poster = ({movie ,images}) => {
 
@@ -13,9 +14,9 @@ const Poster = ({movie ,images}) => {
 
             <Carousel showArrows={true} autoPlay={true} 
                 swiping={true} className="slider animated" >
-                {images && images.backdrops && images.backdrops.length !== 0 ? images.backdrops.slice(0,9).map(img => (
+                {images && images.backdrops && images.backdrops.length !== 0 ? images.backdrops.slice(0,12).map(img => (
                     <img src={`https://image.tmdb.org/t/p/w780${img.file_path}`} className={styles.image} alt={img.file_path} key={img.file_path} />
-                )) : images && images.backdrops && images.backdrops.length === 0 ? <h1>No image </h1> : <h1>Loading</h1> }
+                )) : images && images.backdrops && images.backdrops.length === 0 ? <h1>No image </h1> : <CircularProgress /> }
             </Carousel>
 
             {/* <picture>
