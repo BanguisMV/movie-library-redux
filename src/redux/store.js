@@ -9,8 +9,7 @@ const middlewares = [
 ];
 
 const devTools =
-  process.env.NODE_ENV === "production"
-    ? applyMiddleware(...middlewares)
+  process.env.NODE_ENV === "production" ? applyMiddleware(...middlewares)
     : composeWithDevTools(applyMiddleware(...middlewares));
 
 

@@ -171,9 +171,8 @@ const NavBar = (props) => {
               
               <form className={classes.search} onSubmit={(e) => {
                 dispatch({type:'MOVIES_SEARCH', payload:{ search:value }})
-                dispatch({type:'PAGE_RESET'})
+                history.push(`/search/query=${value}`)
                 e.preventDefault()
-                history.push(`/results?search=${value}`)
                 }}>
 
                 <div className={classes.searchIcon}>

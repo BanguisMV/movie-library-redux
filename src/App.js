@@ -33,11 +33,12 @@ const classes = rootStyle();
               <Route exact path="/" render={() => <Redirect to="/popular" />} />
               {Discovers.map(discover => (<Route exact path={`/${discover.name.toLowerCase()}`} key={discover.id} component={Discover} />))}
               {Categories.map(category => (<Route exact path={`/${category.name.toLowerCase()}`} key={category.id} component={Genre} />))}
-                <BackButton >
-                  <Route exact path='/results' component={SearchResult} />
+              <Route exact path='/search/query=:query' component={SearchResult} />
+              <BackButton >
                   <Route exact path='/movie/:id' component={Movie} />
                   <Route exact path='/person/:id' component={Person} />
               </BackButton>
+
               <Route path='*' component={PageNotFound} />
             </Switch>
         </main>

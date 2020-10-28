@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from 'react'
-import { withRouter } from 'react-router-dom';
+import { useLocation,useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import queryString from 'query-string';
 import { getMoviesBySearch } from '../../../redux/actions/getManyMovies';
@@ -8,22 +8,22 @@ import Cards from './Card';
 
 
 const DiscoverMovies = (props) => {
+    const location = useLocation()
+    const history = useHistory()
+    const { query } = useParams()
     const [imageLoaded, setImageLoaded] = useState(false)
     const dispatch = useDispatch()
-    const parsed = queryString.parse(props.location.search)
-
-    const { page } = useSelector(state => state.page)
-    const { movies, loading} = useSelector(state => state.movies)
+    const { page } = queryString.parse(location.hash)
+    const { movies, loading, search } = useSelector(state => state.movies)
 
     useEffect(() => {
-        dispatch(getMoviesBySearch(parsed.search, page))
-        },[page,dispatch,props.history,parsed.search])
+        dispatch(getMoviesBySearch(search ? search : query, page ? page : 1))
+        },[dispatch,history,search,page,query])
     return (
         <div className={styles.root}>
-        
                 <Cards data={movies} 
                     isLoading={loading}
-                    title={'Results for '+parsed.search}
+                    title={'Results for '+search }
                     setImageLoaded={setImageLoaded} 
                     didImageLoaded={imageLoaded}
                 />
@@ -31,4 +31,4 @@ const DiscoverMovies = (props) => {
     )
 }
 
-export default withRouter(DiscoverMovies)
+export default DiscoverMovies

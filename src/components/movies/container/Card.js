@@ -75,13 +75,13 @@ const Cards = ({ data, setImageLoaded, didImageLoaded, title, isLoading, isGenre
             {isLoading ? <div className='Spinner'><CircularProgress/></div> :  <Grid container spacing={6}>
                 {data.map(movie => (    
                         <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id} className={styles.grid}>
-                                <Card className={didImageLoaded ? styles.card : styles.cardLoading }>
+                                <Card className={didImageLoaded ? styles.card : styles.cardLoading } 
+                                onClick={() => history.push('/movie/'+movie.id)}>
                                     <LazyLoad height={200} once>
                                             <CardMedia
                                                 component="img"
                                                 alt={movie.original_title}
                                                 height="100%"
-                                                onClick={() => history.push('/movie/'+movie.id)}
                                                 className={didImageLoaded ? styles.loaded : styles.loading }
                                                 image={movie.poster_path ? `https://image.tmdb.org/t/p/w342/${movie.poster_path}` : 'https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?size=338&ext=jpg'}
                                                 title={movie.original_title}
@@ -100,7 +100,7 @@ const Cards = ({ data, setImageLoaded, didImageLoaded, title, isLoading, isGenre
                             </Grid>
                             
                     ))}
-                { isLoading || isRecommended ? null : <Pagination /> }
+                { isLoading  ? null : <Pagination /> }
                 </Grid> }
         </Fragment>
     )
