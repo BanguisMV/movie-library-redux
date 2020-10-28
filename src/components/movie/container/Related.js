@@ -45,7 +45,7 @@ const Related = ({cast, images}) => {
             <div className={styles.cast}>
                         {cast && cast.crew && cast.crew.length !== 0 ? cast.crew.slice(0,50).map(x => (
                             <Avatar alt={x.character} key={x.credit_id} 
-                                  onClick={() => history.push(`/people/${x.id}`)} 
+                                  onClick={() => history.push(`/person/${x.id}`)} 
                                   className={styles.castAvatar} 
                                   src={`https://image.tmdb.org/t/p/w92/${x.profile_path}`} />
                                 )) : cast && cast.crew && cast.crew.length !== 0 ? <h1>Unable to find casts</h1> : <h1>Loading..</h1>}

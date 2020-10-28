@@ -121,7 +121,6 @@ const NavBar = (props) => {
           component = {NavLink}
           onClick={() => {
             setMobileOpen(false)
-            dispatch({type:'PAGE_RESET'})
             dispatch({type:'MOVIES_SORT', payload: {sort:'popularity'}})
           }}
           selected = { location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 

@@ -19,12 +19,6 @@ const Poster = ({movie ,images}) => {
                 )) : images && images.backdrops && images.backdrops.length === 0 ? <h1>No image </h1> : <CircularProgress /> }
             </Carousel>
 
-            {/* <picture>
-                <source media="(max-width:500px)" srcSet={`https://image.tmdb.org/t/p/w780/${movie.poster_path && movie.poster_path !== null ? movie.poster_path : null }`} />
-                <source media="(min-width:501px)" srcSet={`https://image.tmdb.org/t/p/w780/${movie.backdrop_path && movie.backdrop_path !== null ? movie.backdrop_path : null }`} />
-                <img src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}} alt={movie.original_title} className={styles.image} />
-            </picture>  */}
-
             <div className={styles.info}>
                 <Typography className={styles.title} variant="h5"> {movie.original_title} </Typography>
                 <Typography variant="subtitle2" gutterBottom> {movie.tagline}  </Typography>

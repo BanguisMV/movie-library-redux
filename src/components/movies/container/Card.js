@@ -100,10 +100,8 @@ const Cards = ({ data, setImageLoaded, didImageLoaded, title, isLoading, isGenre
                             </Grid>
                             
                     ))}
-                { isLoading ? null : <Pagination /> }
+                { isLoading || isRecommended ? null : <Pagination /> }
                 </Grid> }
-
-
         </Fragment>
     )
 }
