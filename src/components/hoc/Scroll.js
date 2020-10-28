@@ -4,19 +4,17 @@ import queryString from 'query-string';
 
 function ScrollToTop({ children }) {
   const { pathname,hash } = useLocation();
-  const x = useHistory()
-  console.log(x);
+  const history = useHistory()
 //   this will make the page back to the top after render.
 //   Found this solution somwhere
 const { page } = queryString.parse(hash)
-console.log(pathname);
   useEffect(() => {
     window.scrollTo({
         top: 0,
         left: 0,
         behavior: "smooth"
       });
-  }, [pathname,page,x.goBack]);
+  }, [pathname,page,history.goBack]);
  
   return children;
 }
