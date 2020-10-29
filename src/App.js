@@ -22,12 +22,12 @@ const rootStyle = makeStyles((theme) => ({
 }));
 
 const App = (props) => {
-ReactGA.initialize('UA-000000-01');
+ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_CODE);
 ReactGA.pageview(window.location.pathname + window.location.search);
 const classes = rootStyle();
   return (
     <div className={classes.root}>
-      <Scroll>
+    <Scroll>
       <CssBaseline />
         <SideNav />
         <main className='content'>
@@ -37,7 +37,7 @@ const classes = rootStyle();
               {Discovers.map(discover => (<Route exact path={`/${discover.name.toLowerCase()}`} key={discover.id} component={Discover} />))}
               {Categories.map(category => (<Route exact path={`/${category.name.toLowerCase()}`} key={category.id} component={Genre} />))}
               <Route exact path='/search/query=:query' component={SearchResult} />
-              <BackButton >
+              <BackButton>
                   <Route exact path='/movie/:id' component={Movie} />
                   <Route exact path='/person/:id' component={Person} />
               </BackButton>
