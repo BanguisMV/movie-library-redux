@@ -6,9 +6,18 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store';
 import App from './App';
 import './App.css';
+import { Helmet } from 'react-helmet';
 
 ReactDOM.render(
   <Provider store={store}>
+    <Helmet>
+          <title>Movie Library 2.0</title>
+          <meta
+            name="description"
+            content="A Movie Library based on my previous version of it. Built with redux and redux thunk."
+          />
+          <link rel="canonical" href="https://movie-redux.banguismv.wtf/" />
+        </Helmet>
     <BrowserRouter>
       <App />
     </BrowserRouter>

@@ -100,10 +100,7 @@ const Person = () => {
 
              </> : !person && !person[1] && !person[0] ? <div className='Spinner'><h1>Can't Find.</h1></div> :  <div className='Spinner'><CircularProgress/></div> 
         } 
-
         </div>
     )
 }
-
 export default Person
-// : https://www.imdb.com/name/nm0000245/
