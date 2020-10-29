@@ -12,6 +12,7 @@ import PageNotFound from './components/movies/dumb/NotFound';
 import { Discovers, Categories } from './components/sidebar/Categories';
 import Scroll from './components/hoc/Scroll';
 import Person from './components/person/Person';
+import ReactGA from 'react-ga';
 
 const rootStyle = makeStyles((theme) => ({
   root: {
@@ -21,6 +22,8 @@ const rootStyle = makeStyles((theme) => ({
 }));
 
 const App = (props) => {
+ReactGA.initialize('UA-000000-01');
+ReactGA.pageview(window.location.pathname + window.location.search);
 const classes = rootStyle();
   return (
     <div className={classes.root}>
