@@ -54,12 +54,7 @@ background-color: #441f8a;
   text-align: center !important;
   margin-top: 2rem !important;
 }
-.GlobalSpinner {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .Profile_Avatar_Show {
   width: auto !important;
   height: auto !important;

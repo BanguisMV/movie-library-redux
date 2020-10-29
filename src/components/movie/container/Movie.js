@@ -29,7 +29,6 @@ const Movie = (props) => {
 
     const { page } = queryString.parse(location.hash)
     const { id } = props.match.params
-    console.log(movie);
 
 // Trying this Promise.all thingy.
 useEffect(() => {
