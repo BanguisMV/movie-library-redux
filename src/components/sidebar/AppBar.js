@@ -16,10 +16,12 @@ import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
 import { SwipeableDrawer } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-
+import Chilling from './watch.png';
 const drawerWidth = 190;
 
 const useStyles = makeStyles((theme) => ({
+  
+  
   root: {
     display: 'flex',
   },
@@ -111,7 +113,6 @@ const NavBar = (props) => {
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = useState('');
-
     const [mobileOpen, setMobileOpen] = useState(false);
     const handleDrawerToggle = () => setMobileOpen(prevState => !prevState);
 
@@ -121,6 +122,7 @@ const NavBar = (props) => {
           component = {NavLink}
           onClick={() => {
             setMobileOpen(false)
+            setValue('')
             dispatch({type:'MOVIES_SORT', payload: {sort:'popularity'}})
           }}
           selected = { location.pathname.toLowerCase() === `/${arr.name.toLowerCase()}` ? true : false } 
@@ -132,7 +134,7 @@ const NavBar = (props) => {
   }
     const drawer = (
       <div className='sidebar'>
-        <img src="https://movie.banguismv.wtf/static/media/Poster.66bbb98a.png" alt="Chilling" style={{width:'100%'}} />
+        <img src={Chilling} alt="Chilling" style={{width:'100%',padding:'1rem'}} />
         <Divider />
             <Typography className={classes.genre} variant="h5" noWrap>
               Discover
@@ -173,6 +175,7 @@ const NavBar = (props) => {
                 dispatch({type:'MOVIES_SEARCH', payload:{ search:value }})
                 history.push(`/search/query=${value}`)
                 e.preventDefault()
+                setValue('') 
                 }}>
 
                 <div className={classes.searchIcon}>
@@ -180,6 +183,7 @@ const NavBar = (props) => {
                 </div>
 
                 <InputBase
+                  value={value}
                   placeholder="Search…"
                   onChange={(e) => setValue(e.target.value)}
                   classes={{ root: classes.inputRoot, input: classes.inputInput}}

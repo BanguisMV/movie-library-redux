@@ -1,14 +1,9 @@
 {
-  "short_name": "Movie-Library",
+  "short_name": "Movie-Library 2.0",
   "name": "Movie-Library-Redux",
   "icons": [
     {
-      "src": "redux.png",
-      "type": "image/png",
-      "sizes": "64x64 32x32 24x24 16x16"
-    },
-    {
-      "src": "redux.png",
+      "src": "watch.png",
       "type": "image/png",
       "sizes": "64x64 32x32 24x24 16x16"
     }

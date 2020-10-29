@@ -30,7 +30,7 @@ const classes = rootStyle();
         <main className='content'>
           <div className={classes.toolbar} />
           <Switch>
-              <Route exact path="/" render={() => <Redirect to="/popular" />} />
+              <Route exact path="/" render={() => <Redirect from='/' to="/popular" />} />
               {Discovers.map(discover => (<Route exact path={`/${discover.name.toLowerCase()}`} key={discover.id} component={Discover} />))}
               {Categories.map(category => (<Route exact path={`/${category.name.toLowerCase()}`} key={category.id} component={Genre} />))}
               <Route exact path='/search/query=:query' component={SearchResult} />
@@ -38,7 +38,6 @@ const classes = rootStyle();
                   <Route exact path='/movie/:id' component={Movie} />
                   <Route exact path='/person/:id' component={Person} />
               </BackButton>
-
               <Route path='*' component={PageNotFound} />
             </Switch>
         </main>

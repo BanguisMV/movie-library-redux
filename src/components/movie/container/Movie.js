@@ -76,8 +76,6 @@ useEffect(() => {
             data={similarMovies} 
             title='Recommendations' /> 
             : similarMovies && similarMovies.length === 0 && <Typography variant="h6" > No Recommendation </Typography> }
-        
-       
 </Fragment>
 
     )
