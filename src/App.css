@@ -1,9 +1,7 @@
 nav a, li, h6 {
   color: #969faf !important;
 }
-*::-webkit-scrollbar {
-  width: .5rem;
-}
+
 @media(min-width:100px) {
   nav a, li {
     color: #969faf !important;
@@ -21,7 +19,9 @@ nav a, li, h6 {
   }
 
 }
-
+*::-webkit-scrollbar {
+  width: .5rem;
+}
 *::-webkit-scrollbar-track {
   background: #cfd5d6;
 }
@@ -35,7 +35,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-background-color: #441f8a;
+  background-color: #441f8a;
 }
 
 .content {
