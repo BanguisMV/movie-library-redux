@@ -8,7 +8,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Poster = ({movie ,images}) => {
-
     return (
         <Fragment>
 
@@ -20,8 +19,8 @@ const Poster = ({movie ,images}) => {
             </Carousel>
 
             <div className={styles.info}>
-                <Typography className={styles.title} variant="h5"> {movie.original_title} </Typography>
-                <Typography variant="subtitle2" gutterBottom> {movie.tagline}  </Typography>
+                <Typography className={styles.title} variant="h5"> {movie.original_title ? movie.original_title : ''} </Typography>
+                <Typography variant="subtitle2" gutterBottom> {movie.tagline ? movie.tagline : ''}  </Typography>
                 <Rating name="half-rating-read" max={5} value={(movie.vote_average / 2)} precision={0.5} readOnly/>
             </div>
             <Divider />   

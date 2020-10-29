@@ -1,16 +1,12 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store';
-import CircularProgress from '@material-ui/core/CircularProgress';
-
-// import App from './App';
-
+import App from './App';
 import './App.css';
 import { Helmet } from 'react-helmet';
-const App = React.lazy(() => import('./App')); // Lazy-loaded
 
 ReactDOM.render(
   <Provider store={store}>
@@ -24,9 +20,7 @@ ReactDOM.render(
                   />
               <link rel="canonical" href="https://movie-redux.banguismv.wtf/" />
         </Helmet>
-        <Suspense fallback={<div className='GlobalSpinner'><CircularProgress/></div>}>
             <App />
-        </Suspense>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
