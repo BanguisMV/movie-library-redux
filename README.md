@@ -6,7 +6,8 @@ This time with React-Redux and Thunk, with Material UI.
 I wish i refactored this more, but the more i do it, the redux in this project will be removed.
 ```
 ```
-You can also use this as PWA or Mobile App because of service worker just tap the Add to home screen and it's good to do. 
+You can also use this as PWA or Mobile App because of service worker
+just tap the Add to home screen and it's good to do. 
 ```
 
 ## [View it here](https://movie-redux.banguismv.wtf)
