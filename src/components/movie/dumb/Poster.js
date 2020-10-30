@@ -20,7 +20,7 @@ const Poster = ({movie ,images}) => {
 
             <div className={styles.info}>
                 <Typography className={styles.title} variant="h5"> {movie.original_title ? movie.original_title : ''} </Typography>
-                <Typography variant="subtitle2" gutterBottom> {movie.tagline ? movie.tagline : ''}  </Typography>
+                <p> {movie.tagline ? movie.tagline : ''}  </p>
                 <Rating name="half-rating-read" max={5} value={(movie.vote_average / 2)} precision={0.5} readOnly/>
             </div>
             <Divider />   
