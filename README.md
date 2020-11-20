@@ -13,6 +13,7 @@ just tap the Add to home screen and it's good to do.
 ## [View it here](https://movie-redux.banguismv.wtf)
 
 ![Homepage](https://github.com/BanguisMV/movie-library-redux/blob/main/preview/HomePreview.JPG)
+![Movie Section](https://github.com/BanguisMV/movie-library-redux/blob/main/preview/Spongebob.JPG?raw=true)
 
 ## Quick View
 
@@ -22,7 +23,7 @@ just tap the Add to home screen and it's good to do.
 
 ## Built With
 
-- [React JS](https://movie-redux.banguismv.wtf)
+- [React JS](reactjs.org)
 - [Redux](https://redux.js.org/)
 - [Material UI](https://material-ui.com/)
 - [Redux Thunk](https://github.com/reduxjs/redux-thunk)
