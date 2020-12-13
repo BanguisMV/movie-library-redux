@@ -12,7 +12,7 @@ just tap the Add to home screen and it's good to do.
 
 ## [View it here](https://movie-redux.banguismv.wtf)
 
-![Homepage](https://github.com/BanguisMV/movie-library-redux/blob/main/preview/HomePreview.JPG)
+![Homepage](https://github.com/BanguisMV/movie-library-redux/blob/main/preview/preview.JPG?raw=true)
 ![Movie Section](https://github.com/BanguisMV/movie-library-redux/blob/main/preview/Spongebob.JPG?raw=true)
 
 ## Quick View
